@@ -1,0 +1,141 @@
+# Test outer
+### TEST_1 ###
+"(test)"
+
+### TEST_2 ###
+"{test}"
+
+### TEST_3 ###
+"[test]"
+
+### TEST_4 ###
+"<test>"
+
+### TEST_5 ###
+"'test'"
+
+### TEST_6 ###
+("test")
+
+### TEST_7 ###
+"`test`"
+
+
+# Test inner
+### TEST_8 ###
+"(test)"
+
+### TEST_9 ###
+"{test}"
+
+### TEST_10 ###
+"[test]"
+
+### TEST_11 ###
+"<test>"
+
+### TEST_12 ###
+"'test'"
+
+### TEST_13 ###
+("test")
+
+### TEST_14 ###
+"`test`"
+
+
+# Test delete and undo
+### TEST_15 ###
+"(test)"
+
+### TEST_16 ###
+"{test}"
+
+### TEST_17 ###
+"[test]"
+
+### TEST_18 ###
+"<test>"
+
+### TEST_19 ###
+('test')
+
+### TEST_20 ###
+("test")
+
+### TEST_21 ###
+"`test`"
+
+
+# Test replace and undo
+### TEST_22 ###
+"(test)"
+
+### TEST_23 ###
+"{test}"
+
+### TEST_24 ###
+"[test]"
+
+### TEST_25 ###
+"<test>"
+
+### TEST_26 ###
+('test')
+
+### TEST_27 ###
+("test")
+
+### TEST_28 ###
+"`test`"
+
+
+# Test outer, add and undo
+### TEST_29 ###
+"test"
+
+### TEST_30 ###
+"test"
+
+### TEST_31 ###
+"test"
+
+### TEST_32 ###
+"test"
+
+### TEST_33 ###
+(test)
+
+### TEST_34 ###
+(test)
+
+### TEST_35 ###
+"test"
+
+
+# Test find next and inner
+### TEST_36 ###
+"(alice)texttexttext(bob)"
+
+### TEST_37 ###
+"{alice}texttexttext{bob}"
+
+### TEST_38 ###
+"[alice]texttexttext[bob]"
+
+### TEST_39 ###
+"<alice>texttexttext<bob>"
+
+
+# Test find prev and inner
+### TEST_40 ###
+"(alice)texttexttext(bob)"
+
+### TEST_41 ###
+"{alice}texttexttext{bob}"
+
+### TEST_42 ###
+"[alice]texttexttext[bob]"
+
+### TEST_43 ###
+"<alice>texttexttext<bob>"

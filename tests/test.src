@@ -1,0 +1,409 @@
+# To run tests open test.txt, source this file and run run-tests
+
+####################
+# Helpers
+####################
+define-command find-test -params 1 -override %{
+    execute-keys "gg/TEST_%arg{1}<ret>gij"
+    set-option global current_test "%arg{1}"
+}
+
+try %{ declare-option str current_test }
+
+define-command check-selection-with -params 1 -override %{
+    evaluate-commands %sh{
+        [[ "$kak_selection" == "$1" ]] && echo nop || echo fail Test $kak_opt_current_test failed
+    }
+}
+
+define-command run-tests -override %{
+    test-1
+    test-2
+    test-3
+    test-4
+    test-5
+    test-6
+    test-7
+    test-8
+    test-9
+    test-10
+    test-11
+    test-12
+    test-13
+    test-14
+    test-15
+    test-16
+    test-17
+    test-18
+    test-19
+    test-20
+    test-21
+    test-22
+    test-23
+    test-24
+    test-25
+    test-26
+    test-27
+    test-28
+    test-29
+    test-30
+    test-31
+    test-32
+    test-33
+    test-34
+    test-35
+    test-36
+    test-37
+    test-38
+    test-39
+    test-40
+    test-41
+    test-42
+    test-43
+    echo 'Success!'
+}
+
+####################
+# Tests
+####################
+define-command test-1 -override %{
+    find-test "1"
+    execute-keys -with-maps -with-hooks 'llm)a'
+    check-selection-with '(test)'
+}
+
+define-command test-2 -override %{
+    find-test "2"
+    execute-keys -with-maps -with-hooks "llm%opt{wrapify_opt_brace}a"
+    check-selection-with '{test}'
+}
+
+define-command test-3 -override %{
+    find-test "3"
+    execute-keys -with-maps -with-hooks 'llm]a'
+    check-selection-with '[test]'
+}
+
+define-command test-4 -override %{
+    find-test "4"
+    execute-keys -with-maps -with-hooks 'llm>a'
+    check-selection-with '<test>'
+}
+
+define-command test-5 -override %{
+    find-test "5"
+    execute-keys -with-maps -with-hooks "llm'a"
+    check-selection-with "'test'"
+}
+
+define-command test-6 -override %{
+    find-test "6"
+    execute-keys -with-maps -with-hooks 'llm"a'
+    check-selection-with '"test"'
+}
+
+define-command test-7 -override %{
+    find-test "7"
+    execute-keys -with-maps -with-hooks 'llm`a'
+    check-selection-with '`test`'
+}
+
+define-command test-8 -override %{
+    find-test "8"
+    execute-keys -with-maps -with-hooks 'llm)i'
+    check-selection-with 'test'
+}
+
+define-command test-9 -override %{
+    find-test "9"
+    execute-keys -with-maps -with-hooks "llm%opt{wrapify_opt_brace}i"
+    check-selection-with 'test'
+}
+
+define-command test-10 -override %{
+    find-test "10"
+    execute-keys -with-maps -with-hooks 'llm]i'
+    check-selection-with 'test'
+}
+
+define-command test-11 -override %{
+    find-test "11"
+    execute-keys -with-maps -with-hooks 'llm>i'
+    check-selection-with 'test'
+}
+
+define-command test-12 -override %{
+    find-test "12"
+    execute-keys -with-maps -with-hooks "llm'i"
+    check-selection-with 'test'
+}
+
+define-command test-13 -override %{
+    find-test "13"
+    execute-keys -with-maps -with-hooks 'llm"i'
+    check-selection-with 'test'
+}
+
+define-command test-14 -override %{
+    find-test "14"
+    execute-keys -with-maps -with-hooks 'llm`i'
+    check-selection-with 'test'
+}
+
+define-command test-15 -override %{
+    find-test "15"
+    execute-keys -with-maps -with-hooks 'llm)d'
+    execute-keys 'xH'
+    check-selection-with '"test"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
+}
+
+define-command test-16 -override %{
+    find-test "16"
+    execute-keys -with-maps -with-hooks "llm%opt{wrapify_opt_brace}d"
+    execute-keys 'xH'
+    check-selection-with '"test"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"{test}"'
+}
+
+define-command test-17 -override %{
+    find-test "17"
+    execute-keys -with-maps -with-hooks 'llm]d'
+    execute-keys 'xH'
+    check-selection-with '"test"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"[test]"'
+}
+
+define-command test-18 -override %{
+    find-test "18"
+    execute-keys -with-maps -with-hooks 'llm>d'
+    execute-keys 'xH'
+    check-selection-with '"test"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"<test>"'
+}
+
+define-command test-19 -override %{
+    find-test "19"
+    execute-keys -with-maps -with-hooks "llm'd"
+    execute-keys 'xH'
+    check-selection-with '(test)'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with "('test')"
+}
+
+define-command test-20 -override %{
+    find-test "20"
+    execute-keys -with-maps -with-hooks 'llm"d'
+    execute-keys 'xH'
+    check-selection-with '(test)'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '("test")'
+}
+
+define-command test-21 -override %{
+    find-test "21"
+    execute-keys -with-maps -with-hooks 'llm`d'
+    execute-keys 'xH'
+    check-selection-with '"test"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"`test`"'
+}
+
+define-command test-22 -override %{
+    find-test "22"
+    execute-keys -with-maps -with-hooks 'llm)rX'
+    execute-keys 'xH'
+    check-selection-with '"XtestX"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
+}
+
+define-command test-23 -override %{
+    find-test "23"
+    execute-keys -with-maps -with-hooks "llm%opt{wrapify_opt_brace}rX"
+    execute-keys 'xH'
+    check-selection-with '"XtestX"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"{test}"'
+}
+
+define-command test-24 -override %{
+    find-test "24"
+    execute-keys -with-maps -with-hooks 'llm]rX'
+    execute-keys 'xH'
+    check-selection-with '"XtestX"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"[test]"'
+}
+
+define-command test-25 -override %{
+    find-test "25"
+    execute-keys -with-maps -with-hooks 'llm>rX'
+    execute-keys 'xH'
+    check-selection-with '"XtestX"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"<test>"'
+}
+
+define-command test-26 -override %{
+    find-test "26"
+    execute-keys -with-maps -with-hooks "llm'rX"
+    execute-keys 'xH'
+    check-selection-with '(XtestX)'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with "('test')"
+}
+
+define-command test-27 -override %{
+    find-test "27"
+    execute-keys -with-maps -with-hooks 'llm"rX'
+    execute-keys 'xH'
+    check-selection-with '(XtestX)'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '("test")'
+}
+
+define-command test-28 -override %{
+    find-test "28"
+    execute-keys -with-maps -with-hooks 'llm`rX'
+    execute-keys 'xH'
+    check-selection-with '"XtestX"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"`test`"'
+}
+
+define-command test-29 -override %{
+    find-test "29"
+    execute-keys -with-maps -with-hooks 'llm"ams)'
+    execute-keys 'xH'
+    check-selection-with '("test")'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"test"'
+}
+
+define-command test-30 -override %{
+    find-test "30"
+    execute-keys -with-maps -with-hooks 'llm"ams' "%opt{wrapify_opt_brace}"
+    execute-keys 'xH'
+    check-selection-with '{"test"}'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"test"'
+}
+
+define-command test-31 -override %{
+    find-test "31"
+    execute-keys -with-maps -with-hooks 'llm"ams]'
+    execute-keys 'xH'
+    check-selection-with '["test"]'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"test"'
+}
+
+define-command test-32 -override %{
+    find-test "32"
+    execute-keys -with-maps -with-hooks 'llm"ams>'
+    execute-keys 'xH'
+    check-selection-with '<"test">'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"test"'
+}
+
+define-command test-33 -override %{
+    find-test "33"
+    execute-keys -with-maps -with-hooks "llm)ams'"
+    execute-keys 'xH'
+    check-selection-with "'(test)'"
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with "(test)"
+}
+
+define-command test-34 -override %{
+    find-test "34"
+    execute-keys -with-maps -with-hooks 'llm)ams"'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '(test)'
+}
+
+define-command test-35 -override %{
+    find-test "35"
+    execute-keys -with-maps -with-hooks 'llm"ams`'
+    execute-keys 'xH'
+    check-selection-with '`"test"`'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"test"'
+}
+
+define-command test-36 -override %{
+    find-test "36"
+    execute-keys -with-maps -with-hooks "txm(i"
+    check-selection-with "bob"
+}
+
+define-command test-37 -override %{
+    find-test "37"
+    execute-keys -with-maps -with-hooks "txm%opt{wrapify_opt_brace_rev}i"
+    check-selection-with "bob"
+}
+
+define-command test-38 -override %{
+    find-test "38"
+    execute-keys -with-maps -with-hooks "txm[i"
+    check-selection-with "bob"
+}
+
+define-command test-39 -override %{
+    find-test "39"
+    execute-keys -with-maps -with-hooks "txm<i"
+    check-selection-with "bob"
+}
+
+define-command test-40 -override %{
+    find-test "40"
+    execute-keys -with-maps -with-hooks "txm)i"
+    check-selection-with "alice"
+}
+
+define-command test-41 -override %{
+    find-test "41"
+    execute-keys -with-maps -with-hooks "txm%opt{wrapify_opt_brace}i"
+    check-selection-with "alice"
+}
+
+define-command test-42 -override %{
+    find-test "42"
+    execute-keys -with-maps -with-hooks "txm]i"
+    check-selection-with "alice"
+}
+
+define-command test-43 -override %{
+    find-test "43"
+    execute-keys -with-maps -with-hooks "txm>i"
+    check-selection-with "alice"
+}

@@ -9,6 +9,7 @@ define-command wrapify-search-in-direction -hidden -params 2 %{
 }
 
 declare-option -hidden str wrapify_opt_brace '}'
+declare-option -hidden str wrapify_opt_brace_rev '{'
 declare-option -hidden str wrapify_opt_direction
 define-command wrapify-search-pair -hidden -params 1 %{
     try %{
