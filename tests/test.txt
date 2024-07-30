@@ -264,3 +264,47 @@ function main <
 # Test cancellation within chaining
 ### TEST_74 ###
 "((((test))))"
+
+
+# Test char selection
+### TEST_75 ###
+"ZXtestXZ"
+
+### TEST_76 ###
+"ZXtestXZ"
+
+### TEST_77 ###
+"~XtestX~"
+
+### TEST_78 ###
+"_XtestX_"
+
+### TEST_79 ###
+" XtestX "
+
+### TEST_80 ###
+".XtestX."
+
+### TEST_81 ###
+"*XtestX*"
+
+### TEST_82 ###
+",XtestX,"
+
+### TEST_83 ###
+"\XtestX\"
+
+### TEST_84 ###
+"?XtestX?"
+
+### TEST_85 ###
+"^XtestX^"
+
+### TEST_86 ###
+"|XtestX|"
+
+### TEST_87 ###
+"+XtestX+"
+
+### TEST_88 ###
+"$XtestX$"

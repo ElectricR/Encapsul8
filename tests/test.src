@@ -93,6 +93,20 @@ define-command run-tests -override %{
     test-72
     test-73
     test-74
+    test-75
+    test-76
+    test-77
+    test-78
+    test-79
+    test-80
+    test-81
+    test-82
+    test-83
+    test-84
+    test-85
+    test-86
+    test-87
+    test-88
     test-no-pending-changes
     echo 'Success!'
 }
@@ -784,4 +798,109 @@ define-command test-74 -override %{
     check-selection-with 's'
     execute-keys 'xH'
     check-selection-with '"((((test))))"'
+}
+
+define-command test-75 -override %{
+    find-test "75"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mZi'
+    check-selection-with 'XtestX'
+}
+
+define-command test-76 -override %{
+    find-test "76"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mZX'
+    execute-keys 'l'
+    check-selection-with 's'
+    execute-keys 'xH'
+    check-selection-with '"XXtestXX"'
+    execute-keys -with-hooks -with-maps 'u'
+    execute-keys 'xH'
+    check-selection-with '"ZXtestXZ"'
+}
+
+define-command test-77 -override %{
+    find-test "77"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm~i'
+    check-selection-with 'XtestX'
+}
+
+define-command test-78 -override %{
+    find-test "78"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm_i'
+    check-selection-with 'XtestX'
+}
+
+define-command test-79 -override %{
+    find-test "79"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm i'
+    check-selection-with 'XtestX'
+}
+
+define-command test-80 -override %{
+    find-test "80"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm.i'
+    check-selection-with 'XtestX'
+}
+
+define-command test-81 -override %{
+    find-test "81"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm*i'
+    check-selection-with 'XtestX'
+}
+
+define-command test-82 -override %{
+    find-test "82"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm,i'
+    check-selection-with 'XtestX'
+}
+
+define-command test-83 -override %{
+    find-test "83"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm\'
+    execute-keys -with-hooks -with-maps 'i'
+    check-selection-with 'XtestX'
+}
+
+define-command test-84 -override %{
+    find-test "84"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm?i'
+    check-selection-with 'XtestX'
+}
+
+define-command test-85 -override %{
+    find-test "85"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm^i'
+    check-selection-with 'XtestX'
+}
+
+define-command test-86 -override %{
+    find-test "86"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm|i'
+    check-selection-with 'XtestX'
+}
+
+define-command test-87 -override %{
+    find-test "87"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm+i'
+    check-selection-with 'XtestX'
+}
+
+define-command test-88 -override %{
+    find-test "88"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm$i'
+    check-selection-with 'XtestX'
 }
