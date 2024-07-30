@@ -6,3 +6,5 @@ declare-option -hidden str wrapify_mapping_action_delete # = 'd'
 declare-option -hidden str wrapify_mapping_action_replace # = 'r'
 declare-option -hidden str wrapify_mapping_wrap_shortcut # = 's'
 declare-option -hidden str wrapify_mapping_cancel # = '<esc>'
+
+declare-option -hidden bool wrapify_fast_replace false

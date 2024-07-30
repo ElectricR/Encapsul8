@@ -139,3 +139,34 @@
 
 ### TEST_43 ###
 "<alice>texttexttext<bob>"
+
+
+# Test fast replace and undo
+### TEST_44 ###
+"(test)"
+
+
+# Test chain selection
+### TEST_45 ###
+"(test)"
+
+### TEST_46 ###
+"((((test))))"
+
+### TEST_47 ###
+"[`[<[[X]]>]`]"
+
+### TEST_48 ###
+"[`[<[[X]]>]`]"
+
+### TEST_49 ###
+"((((.))))"
+
+### TEST_50 ###
+"(((())))"
+
+### TEST_51 ###
+"[[.]]"
+
+### TEST_52 ###
+"[[.]]"

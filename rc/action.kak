@@ -51,6 +51,24 @@ define-command wrapify-action-replace-with-key -hidden %{
 }
 
 #####################
+# Iterate
+#####################
+define-command wrapify-iterate -hidden %{
+    wrapify-position-restore-last-search
+    wrapify-action-select
+}
+
+define-command wrapify-iterate-or-replace -hidden %{
+    %sh{
+        if $kak_opt_wrapify_fast_replace; then
+            echo wrapify-action-replace-with-key
+        else
+            echo wrapify-iterate
+        fi
+    }
+}
+
+#####################
 # Action switch
 #####################
 define-command wrapify-action-switch -params 1 -hidden %{
@@ -62,10 +80,22 @@ define-command wrapify-action-switch -params 1 -hidden %{
                 $kak_opt_wrapify_mapping_action_select_outer) echo wrapify-action-select-outer ;;
                 $kak_opt_wrapify_mapping_action_delete)       echo wrapify-action-delete ;;
                 $kak_opt_wrapify_mapping_action_replace)      echo wrapify-action-replace ;;
-                *) echo wrapify-action-replace-with-key
+                *) echo wrapify-iterate-or-replace
             esac
         }
     }
+}
+
+define-command wrapify-action-select -hidden %{
+    wrapify-check-cancel %val{key}
+    try %{
+        wrapify-search-pair "%val{key}"
+    } catch %{
+        wrapify-position-restore-user
+        fail "%val{error}"
+    }
+    wrapify-highlight-wrapping
+    wrapify-action-switch "%val{key}" # async
 }
 
 define-command wrapify-action %{
@@ -76,16 +106,8 @@ define-command wrapify-action %{
             }
             wrapify-wrap # async
         } catch %{
-            wrapify-check-cancel %val{key}
             wrapify-position-save-user
-            try %{
-                wrapify-search-pair "%val{key}"
-            } catch %{
-                wrapify-position-restore-user
-                fail "%val{error}"
-            }
-            wrapify-highlight-wrapping
-            wrapify-action-switch "%val{key}" # async
+            wrapify-action-select
         }
     }
 }

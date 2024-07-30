@@ -60,6 +60,14 @@ define-command run-tests -override %{
     test-41
     test-42
     test-43
+    test-44
+    test-45
+    test-46
+    test-47
+    test-48
+    test-49
+    test-51
+    test-52
     echo 'Success!'
 }
 
@@ -406,4 +414,79 @@ define-command test-43 -override %{
     find-test "43"
     execute-keys -with-maps -with-hooks "txm>i"
     check-selection-with "alice"
+}
+
+define-command test-44 -override %{
+    find-test "44"
+    set-option global wrapify_fast_replace true
+    execute-keys -with-maps -with-hooks 'llm)]'
+    execute-keys 'xH'
+    check-selection-with '"[test]"'
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
+}
+
+define-command test-45 -override %{
+    find-test "45"
+    set-option global wrapify_fast_replace false
+    execute-keys 'lll'
+    execute-keys -with-maps -with-hooks 'm)"a'
+    check-selection-with '"(test)"'
+}
+
+define-command test-46 -override %{
+    find-test "46"
+    set-option global wrapify_fast_replace false
+    execute-keys 'te'
+    execute-keys -with-maps -with-hooks 'm)))a'
+    check-selection-with '(((test)))'
+}
+
+define-command test-47 -override %{
+    find-test "47"
+    set-option global wrapify_fast_replace false
+    execute-keys 'fX'
+    execute-keys -with-maps -with-hooks 'm]]>]`]a'
+    check-selection-with '[`[<[[X]]>]`]'
+}
+
+define-command test-48 -override %{
+    find-test "48"
+    set-option global wrapify_fast_replace false
+    execute-keys 'fX'
+    execute-keys -with-maps -with-hooks 'm[[<[`[a'
+    check-selection-with '[`[<[[X]]>]`]'
+}
+
+define-command test-49 -override %{
+    find-test "49"
+    set-option global wrapify_fast_replace false
+    execute-keys 'f.'
+    execute-keys -with-maps -with-hooks 'm()()a'
+    check-selection-with '((((.))))'
+}
+
+define-command test-50 -override %{
+    find-test "50"
+    set-option global wrapify_fast_replace false
+    execute-keys 't)'
+    execute-keys -with-maps -with-hooks 'm()()a'
+    check-selection-with '(((())))'
+}
+
+define-command test-51 -override %{
+    find-test "51"
+    set-option global wrapify_fast_replace false
+    execute-keys 't]'
+    execute-keys -with-maps -with-hooks 'm]]a'
+    check-selection-with '[[.]]'
+}
+
+define-command test-52 -override %{
+    find-test "52"
+    set-option global wrapify_fast_replace false
+    execute-keys 't]'
+    execute-keys -with-maps -with-hooks 'm[[a'
+    check-selection-with '[[.]]'
 }
