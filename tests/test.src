@@ -77,6 +77,9 @@ define-command run-tests -override %{
     test-57
     test-58
     test-59
+    test-60
+    test-61
+    test-62
     test-no-pending-changes
     echo 'Success!'
 }
@@ -556,4 +559,34 @@ define-command test-59 -override %{
     execute-keys 'kxJJH'
     check-selection-with %sh{ printf 'function main {\n    echo `echo "hi"`\n}' }
     execute-keys -with-maps -with-hooks 'u'
+}
+
+define-command test-60 -override %{
+    find-test "60"
+    execute-keys 'tel'
+    execute-keys -with-maps -with-hooks "m)d"
+    wrapify-undo-save # explicit call, known issue
+    check-selection-with 'e'
+    execute-keys -with-maps -with-hooks 'u'
+    check-selection-with 'e'
+}
+
+define-command test-61 -override %{
+    find-test "61"
+    execute-keys 'tel'
+    execute-keys -with-maps -with-hooks "m)r<"
+    wrapify-undo-save # explicit call, known issue
+    check-selection-with 'e'
+    execute-keys -with-maps -with-hooks 'u'
+    check-selection-with 'e'
+}
+
+define-command test-62 -override %{
+    find-test "62"
+    execute-keys 'tee'
+    execute-keys -with-maps -with-hooks "ms)"
+    wrapify-undo-save # explicit call, known issue
+    check-selection-with '(test)'
+    execute-keys -with-maps -with-hooks 'u'
+    check-selection-with 'test'
 }

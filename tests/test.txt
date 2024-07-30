@@ -185,6 +185,7 @@
 ### TEST_56 ###
 "()"
 
+
 # Test multiline
 ### TEST_57 ###
 [
@@ -206,3 +207,14 @@ function main {
 function main <
     echo `echo "hi"`
 >
+
+
+# Test position restore a bit
+### TEST_60 ###
+"(test)"
+
+### TEST_61 ###
+"(test)"
+
+### TEST_62 ###
+"(test)"
