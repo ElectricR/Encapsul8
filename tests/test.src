@@ -1,4 +1,5 @@
 # To run tests open test.txt, source this file and run run-tests
+require-module wrapify-load-defaults
 
 ####################
 # Helpers
