@@ -9,6 +9,7 @@ define-command find-test -params 1 -override %{
 }
 
 try %{ declare-option str current_test }
+try %{ declare-option str history_id_start }
 
 define-command check-selection-with -params 1 -override %{
     evaluate-commands %sh{
@@ -17,6 +18,7 @@ define-command check-selection-with -params 1 -override %{
 }
 
 define-command run-tests -override %{
+    set-option global history_id_start "%val{history_id}"
     test-1
     test-2
     test-3
@@ -68,7 +70,21 @@ define-command run-tests -override %{
     test-49
     test-51
     test-52
+    test-53
+    test-54
+    test-55
+    test-56
+    test-57
+    test-58
+    test-59
+    test-no-pending-changes
     echo 'Success!'
+}
+
+define-command test-no-pending-changes -override %{
+    evaluate-commands %sh{
+        [[ "$kak_opt_history_id_start" == "$kak_history_id" ]] && echo nop || echo fail "History id is not $kak_opt_history_id_start!"
+    }
 }
 
 ####################
@@ -489,4 +505,55 @@ define-command test-52 -override %{
     execute-keys 't]'
     execute-keys -with-maps -with-hooks 'm[[a'
     check-selection-with '[[.]]'
+}
+
+define-command test-53 -override %{
+    find-test "53"
+    execute-keys 't)'
+    execute-keys -with-maps -with-hooks 'm(a'
+    check-selection-with '()'
+}
+
+define-command test-54 -override %{
+    find-test "54"
+    execute-keys 't)'
+    execute-keys -with-maps -with-hooks 'm)a'
+    check-selection-with '()'
+}
+
+define-command test-55 -override %{
+    find-test "55"
+    execute-keys 'f)'
+    execute-keys -with-maps -with-hooks 'm(a'
+    check-selection-with '()'
+}
+
+define-command test-56 -override %{
+    find-test "56"
+    execute-keys 'f)'
+    execute-keys -with-maps -with-hooks 'm)a'
+    check-selection-with '()'
+}
+
+define-command test-57 -override %{
+    find-test "57"
+    execute-keys 'jjj'
+    execute-keys -with-maps -with-hooks 'm]a'
+    check-selection-with %sh{ printf '[\n<\n(\nX\n)\n`\n]' }
+}
+
+define-command test-58 -override %{
+    find-test "58"
+    execute-keys 'jti'
+    execute-keys -with-maps -with-hooks "m)i"
+    check-selection-with %sh{ printf '\n        echo hi\n    ' }
+}
+
+define-command test-59 -override %{
+    find-test "59"
+    execute-keys 'jti'
+    execute-keys -with-maps -with-hooks "m<r%opt{wrapify_opt_brace}"
+    execute-keys 'kxJJH'
+    check-selection-with %sh{ printf 'function main {\n    echo `echo "hi"`\n}' }
+    execute-keys -with-maps -with-hooks 'u'
 }

@@ -170,3 +170,39 @@
 
 ### TEST_52 ###
 "[[.]]"
+
+
+# Test smol selections
+### TEST_53 ###
+"()"
+
+### TEST_54 ###
+"()"
+
+### TEST_55 ###
+"()"
+
+### TEST_56 ###
+"()"
+
+# Test multiline
+### TEST_57 ###
+[
+<
+(
+X
+)
+`
+]
+
+### TEST_58 ###
+function main {
+    (
+        echo hi
+    )
+}
+
+### TEST_59 ###
+function main <
+    echo `echo "hi"`
+>

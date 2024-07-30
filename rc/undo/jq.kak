@@ -27,7 +27,7 @@ provide-module wrapify-undo-jq %{
             cat $kak_opt_wrapify_undo_jq_file | jq -r .'"'$kak_history_id'"'
         }
         evaluate-commands %sh{
-            [[ $kak_opt_wrapify_undo_jq_selections != null ]] && echo nop || echo fail
+            [[ $kak_opt_wrapify_undo_jq_selections != null ]] && echo nop || echo fail null selections
         }
         execute-keys "u"
         wrapify-position-restore "%opt{wrapify_undo_jq_selections}"
