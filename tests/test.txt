@@ -218,3 +218,25 @@ function main <
 
 ### TEST_62 ###
 "(test)"
+
+
+# Test advanced undo with position restore using jq
+### TEST_63 ###
+"(test)"
+
+### TEST_64 ###
+"(test)"
+
+### TEST_65 ###
+"(test)"
+
+
+# Test position restore for redo a bit
+### TEST_66 ###
+"(test)"
+
+### TEST_67 ###
+"(test)"
+
+### TEST_68 ###
+"(test)"

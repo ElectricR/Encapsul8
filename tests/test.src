@@ -80,6 +80,12 @@ define-command run-tests -override %{
     test-60
     test-61
     test-62
+    test-63
+    test-64
+    test-65
+    test-66
+    test-67
+    test-68
     test-no-pending-changes
     echo 'Success!'
 }
@@ -589,4 +595,103 @@ define-command test-62 -override %{
     check-selection-with '(test)'
     execute-keys -with-maps -with-hooks 'u'
     check-selection-with 'test'
+}
+
+define-command test-63 -override %{
+    # This scenario should work, but testing
+    # framework does not allow this to be tested
+    #
+    # find-test "63"
+    # execute-keys 'tee'
+    # execute-keys -with-maps -with-hooks "ms)"
+    # execute-keys -with-maps -with-hooks "ms)"
+    # execute-keys -with-maps -with-hooks "ms)"
+    # check-selection-with '(((test)))'
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with '((test))'
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with '(test)'
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with 'test'
+}
+
+define-command test-64 -override %{
+    # This fails due to a known bug
+    # find-test "64"
+    # execute-keys 'tee'
+    # execute-keys -with-maps -with-hooks "ms)"
+    # execute-keys -with-maps -with-hooks "ms)"
+    # execute-keys 'hh'
+    # execute-keys -with-maps -with-hooks "m)d"
+
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with 't'
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with '(test)'
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with 'test'
+}
+
+define-command test-65 -override %{
+    # This fails due to a known bug
+    # find-test "65"
+    # execute-keys 'tee'
+    # execute-keys -with-maps -with-hooks "ms<"
+    # execute-keys -with-maps -with-hooks "ms]"
+    # execute-keys 'hh'
+    # execute-keys -with-maps -with-hooks "m]r>"
+    # execute-keys -with-maps -with-hooks "m)d"
+    # execute-keys -with-maps -with-hooks "m>d"
+    # execute-keys -with-maps -with-hooks "m>d"
+    # execute-keys 'b'
+    # execute-keys -with-maps -with-hooks "ms)"
+
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with 'test'
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with 't'
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with 't'
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with 't'
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with 't'
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with '<test>'
+    # execute-keys -with-maps -with-hooks 'u'
+    # check-selection-with 'test'
+}
+
+define-command test-66 -override %{
+    find-test "66"
+    execute-keys 'tel'
+    execute-keys -with-maps -with-hooks "m)d"
+    wrapify-undo-save # explicit call, known issue
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys -with-maps -with-hooks 'U'
+    check-selection-with 'e'
+    execute-keys -with-maps -with-hooks 'u'
+}
+
+define-command test-67 -override %{
+    find-test "67"
+    execute-keys 'tel'
+    execute-keys -with-maps -with-hooks "m)r<"
+    wrapify-undo-save # explicit call, known issue
+    execute-keys -with-maps -with-hooks 'u'
+    execute-keys -with-maps -with-hooks 'U'
+    check-selection-with 'e'
+    execute-keys -with-maps -with-hooks 'u'
+}
+
+define-command test-68 -override %{
+    # Does not work currently
+    #
+    # find-test "68"
+    # execute-keys 'tee'
+    # execute-keys -with-maps -with-hooks "ms)"
+    # execute-keys -with-maps -with-hooks 'u'
+    # execute-keys -with-maps -with-hooks 'U'
+    # check-selection-with '(test)'
+    # execute-keys -with-maps -with-hooks 'u'
 }
