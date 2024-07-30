@@ -92,6 +92,7 @@ define-command run-tests -override %{
     test-71
     test-72
     test-73
+    test-74
     test-no-pending-changes
     echo 'Success!'
 }
@@ -772,3 +773,15 @@ define-command test-73 -override %{
     check-selection-with '"(test)"'
 }
 
+define-command test-74 -override %{
+    find-test "74"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm)))'
+    try %{
+        execute-keys -with-hooks -with-maps '<esc>'
+    }
+    execute-keys 'l'
+    check-selection-with 's'
+    execute-keys 'xH'
+    check-selection-with '"((((test))))"'
+}

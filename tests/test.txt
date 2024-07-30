@@ -259,3 +259,8 @@ function main <
 
 ### TEST_73 ###
 "(test)"
+
+
+# Test cancellation within chaining
+### TEST_74 ###
+"((((test))))"
