@@ -86,6 +86,7 @@ define-command run-tests -override %{
     test-66
     test-67
     test-68
+    test-69
     test-no-pending-changes
     echo 'Success!'
 }
@@ -695,3 +696,22 @@ define-command test-68 -override %{
     # check-selection-with '(test)'
     # execute-keys -with-maps -with-hooks 'u'
 }
+
+define-command test-69 -override %{
+    find-test "69"
+    execute-keys 'tel'
+    execute-keys 'd'
+
+    declare-option -hidden bool test_69_failed true
+    try %{
+        wrapify-undo
+        set-option window test_69_failed false
+    }
+    try %sh{
+        $kak_opt_test_69_failed && echo nop || echo fail
+    } catch %{
+        fail Wrapify undo should not deal with other's changes
+    }
+    execute-keys 'u'
+}
+

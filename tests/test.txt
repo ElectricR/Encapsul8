@@ -240,3 +240,9 @@ function main <
 
 ### TEST_68 ###
 "(test)"
+
+
+# Test undo won't affect other's changes
+### TEST_69 ###
+"(test)"
+
