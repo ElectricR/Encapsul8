@@ -15,7 +15,7 @@ provide-module wrapify-undo-jq %{
 
     define-command wrapify-undo-save -hidden -override %{
         nop %sh{
-            cat $kak_opt_wrapify_undo_jq_file | jq ". + { \"$kak_history_id\" : \"$kak_opt_wrapify_position_save_user\" }" > ${kak_opt_wrapify_undo_jq_file}.tmp
+            cat $kak_opt_wrapify_undo_jq_file | jq ". * { \"$kak_buffile\" : { \"$kak_history_id\" : \"$kak_opt_wrapify_position_save_user\" } }" > ${kak_opt_wrapify_undo_jq_file}.tmp
             mv ${kak_opt_wrapify_undo_jq_file}.tmp $kak_opt_wrapify_undo_jq_file
         }
     }
@@ -24,7 +24,7 @@ provide-module wrapify-undo-jq %{
 
     define-command wrapify-undo -override %{
         set-option window wrapify_undo_jq_selections %sh{
-            cat $kak_opt_wrapify_undo_jq_file | jq -r .'"'$kak_history_id'"'
+            cat $kak_opt_wrapify_undo_jq_file | jq -r .'"'$kak_buffile'"'.'"'$kak_history_id'"'
         }
         evaluate-commands %sh{
             [[ $kak_opt_wrapify_undo_jq_selections != null ]] && echo nop || echo fail null selections
@@ -37,7 +37,7 @@ provide-module wrapify-undo-jq %{
         execute-keys "U"
         try %{
             set-option window wrapify_undo_jq_selections %sh{
-                cat $kak_opt_wrapify_undo_jq_file | jq -r .'"'$kak_history_id'"'
+                cat $kak_opt_wrapify_undo_jq_file | jq -r .'"'$kak_buffile'"'.'"'$kak_history_id'"'
             }
             evaluate-commands %sh{
                 [[ $kak_opt_wrapify_undo_jq_selections != null ]] && echo nop || echo fail

@@ -107,6 +107,7 @@ define-command run-tests -override %{
     test-86
     test-87
     test-88
+    test-89
     test-no-pending-changes
     echo 'Success!'
 }
@@ -903,4 +904,22 @@ define-command test-88 -override %{
     execute-keys 'tel'
     execute-keys -with-hooks -with-maps 'm$i'
     check-selection-with 'XtestX'
+}
+
+define-command test-89 -override %{
+    find-test "89"
+    execute-keys 'tel'
+    execute-keys ':e test2<ret>'
+    execute-keys 'itest<esc>b'
+    execute-keys -with-hooks -with-maps 'ms)'
+    wrapify-undo-save # explicit call, known issue
+    execute-keys ':b test.txt<ret>'
+    execute-keys -with-hooks -with-maps 'm)d'
+    wrapify-undo-save # explicit call, known issue
+    execute-keys ':b test2<ret>'
+    execute-keys -with-hooks -with-maps 'u'
+    check-selection-with 'test'
+    execute-keys ':db!<ret>'
+    execute-keys -with-hooks -with-maps 'u'
+    check-selection-with 'e'
 }

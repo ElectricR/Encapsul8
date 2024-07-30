@@ -308,3 +308,8 @@ function main <
 
 ### TEST_88 ###
 "$XtestX$"
+
+
+# Test multifile undo
+### TEST_89 ###
+"(test)"
