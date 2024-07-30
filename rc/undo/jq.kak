@@ -22,7 +22,7 @@ provide-module wrapify-undo-jq %{
 
     declare-option -hidden str wrapify_undo_jq_selections
 
-    define-command wrapify-undo -hidden -override %{
+    define-command wrapify-undo -override %{
         set-option window wrapify_undo_jq_selections %sh{
             cat $kak_opt_wrapify_undo_jq_file | jq -r .'"'$kak_history_id'"'
         }
@@ -33,7 +33,7 @@ provide-module wrapify-undo-jq %{
         wrapify-position-restore "%opt{wrapify_undo_jq_selections}"
     }
 
-    define-command wrapify-redo -hidden -override %{
+    define-command wrapify-redo -override %{
         execute-keys "U"
         try %{
             set-option window wrapify_undo_jq_selections %sh{

@@ -17,14 +17,14 @@ define-command wrapify-undo-save -hidden -override %{
     wrapify-undo-save
 }
 
-define-command wrapify-undo -hidden %{
+define-command wrapify-undo %{
     require-module %sh{
         printf "wrapify-undo-$kak_opt_wrapify_undo_provider"
     }
     wrapify-undo
 }
 
-define-command wrapify-redo -hidden %{
+define-command wrapify-redo %{
     require-module %sh{
         printf "wrapify-undo-$kak_opt_wrapify_undo_provider"
     }
