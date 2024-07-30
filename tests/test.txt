@@ -246,3 +246,17 @@ function main <
 ### TEST_69 ###
 "(test)"
 
+
+# Test cancellation with position restore
+### TEST_70 ###
+"(test)"
+
+### TEST_71 ###
+"(test)"
+
+### TEST_72 ###
+"(test)"
+
+### TEST_73 ###
+"(test)"
+

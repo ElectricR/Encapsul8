@@ -88,6 +88,10 @@ define-command run-tests -override %{
     test-67
     test-68
     test-69
+    test-70
+    test-71
+    test-72
+    test-73
     test-no-pending-changes
     echo 'Success!'
 }
@@ -714,5 +718,60 @@ define-command test-69 -override %{
         fail Wrapify undo should not deal with other's changes
     }
     execute-keys 'u'
+}
+
+define-command test-70 -override %{
+    find-test "70"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm'
+    try %{
+        execute-keys -with-hooks -with-maps '<esc>'
+    }
+    execute-keys 'l'
+    check-selection-with 's'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
+}
+
+
+define-command test-71 -override %{
+    find-test "71"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'ms'
+    try %{
+        execute-keys -with-hooks -with-maps '<esc>'
+    }
+    execute-keys 'l'
+    check-selection-with 's'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
+}
+
+
+define-command test-72 -override %{
+    find-test "72"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm)'
+    try %{
+        execute-keys -with-hooks -with-maps '<esc>'
+    }
+    execute-keys 'l'
+    check-selection-with 's'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
+}
+
+
+define-command test-73 -override %{
+    find-test "73"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm)r'
+    try %{
+        execute-keys -with-hooks -with-maps '<esc>'
+    }
+    execute-keys 'l'
+    check-selection-with 's'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
 }
 
