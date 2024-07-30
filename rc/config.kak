@@ -7,8 +7,6 @@ declare-option -hidden str wrapify_mapping_action_replace
 declare-option -hidden str wrapify_mapping_wrap_shortcut
 declare-option -hidden str wrapify_mapping_cancel
 
-declare-option -hidden bool wrapify_fast_replace false
-
 # Suggested defaults
 # Load them with `require-module wrapify-load-defaults`
 provide-module wrapify-load-defaults %{
@@ -18,8 +16,6 @@ provide-module wrapify-load-defaults %{
     set-option global wrapify_mapping_action_replace 'r'
     set-option global wrapify_mapping_wrap_shortcut 's'
     set-option global wrapify_mapping_cancel '<esc>'
-
-    set-option global wrapify_fast_replace false
 
     define-command undo %{
         try %{ wrapify-undo } catch %{ try %{ execute-keys u } }

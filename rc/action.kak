@@ -53,19 +53,11 @@ define-command wrapify-action-replace-with-key -hidden %{
 #####################
 # Iterate
 #####################
+declare-option -hidden str wrapify_iterate_current_search
+
 define-command wrapify-iterate -hidden %{
     wrapify-position-restore-last-search
     wrapify-action-select
-}
-
-define-command wrapify-iterate-or-replace -hidden %{
-    %sh{
-        if $kak_opt_wrapify_fast_replace; then
-            echo wrapify-action-replace-with-key
-        else
-            echo wrapify-iterate
-        fi
-    }
 }
 
 #####################
@@ -80,7 +72,8 @@ define-command wrapify-action-switch -params 1 -hidden %{
                 $kak_opt_wrapify_mapping_action_select_outer) echo wrapify-action-select-outer ;;
                 $kak_opt_wrapify_mapping_action_delete)       echo wrapify-action-delete ;;
                 $kak_opt_wrapify_mapping_action_replace)      echo wrapify-action-replace ;;
-                *) echo wrapify-iterate-or-replace
+                $kak_opt_wrapify_iterate_current_search)      echo wrapify-iterate ;;
+                *) echo wrapify-action-replace-with-key
             esac
         }
     }
@@ -107,6 +100,7 @@ define-command wrapify-action %{
             wrapify-wrap # async
         } catch %{
             wrapify-position-save-user
+            set-option window wrapify_iterate_current_search "%val{key}"
             wrapify-action-select
         }
     }

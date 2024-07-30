@@ -146,15 +146,15 @@
 "(test)"
 
 
-# Test chain selection
+# Test iterate and replace
 ### TEST_45 ###
-"(test)"
+"((((test))))"
 
 ### TEST_46 ###
 "((((test))))"
 
 ### TEST_47 ###
-"[`[<[[X]]>]`]"
+"((((test))))"
 
 ### TEST_48 ###
 "[`[<[[X]]>]`]"
@@ -259,4 +259,3 @@ function main <
 
 ### TEST_73 ###
 "(test)"
-
