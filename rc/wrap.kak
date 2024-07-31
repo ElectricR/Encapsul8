@@ -22,6 +22,7 @@ define-command wrapify-wrap-add-pair-based-on -hidden -params 1 %{
 }
 
 define-command wrapify-wrap-exec -hidden %{
+    wrapify-info action_wrap
     on-key %{
         wrapify-check-cancel-with-user-position-restore %val{key}
         wrapify-wrap-add-pair-based-on %val{key}

@@ -40,6 +40,7 @@ define-command wrapify-action-replace-with -hidden -params 1 %{
 }
 
 define-command wrapify-action-replace -hidden %{
+    wrapify-info action_replace
     on-key %{
         wrapify-check-cancel-with-user-position-restore %val{key}
         wrapify-action-replace-with %val{key}
@@ -77,17 +78,18 @@ define-command wrapify-wrap-within-action-shortcut -hidden %{
 # Action switch
 #####################
 define-command wrapify-action-switch -params 1 -hidden %{
+    wrapify-info action_switch
     on-key %{
         wrapify-check-cancel-with-user-position-restore %val{key}
         %sh{
             case $kak_key in
-                $kak_opt_wrapify_mapping_action_select_inner)        echo wrapify-action-select-inner ;;
-                $kak_opt_wrapify_mapping_action_select_outer)        echo wrapify-action-select-outer ;;
-                $kak_opt_wrapify_mapping_action_delete)              echo wrapify-action-delete ;;
-                $kak_opt_wrapify_mapping_action_replace)             echo wrapify-action-replace ;;
-                $kak_opt_wrapify_mapping_action_wrap_within_shorcut) echo wrapify-wrap-within-action-shortcut ;;
-                $kak_opt_wrapify_mapping_action_wrap_around_shorcut) echo wrapify-wrap-around-action-shortcut ;;
-                $kak_opt_wrapify_iterate_current_search)             echo wrapify-iterate ;;
+                $kak_opt_wrapify_mapping_action_select_inner)         echo wrapify-action-select-inner ;;
+                $kak_opt_wrapify_mapping_action_select_outer)         echo wrapify-action-select-outer ;;
+                $kak_opt_wrapify_mapping_action_delete)               echo wrapify-action-delete ;;
+                $kak_opt_wrapify_mapping_action_replace)              echo wrapify-action-replace ;;
+                $kak_opt_wrapify_mapping_action_wrap_within_shortcut) echo wrapify-wrap-within-action-shortcut ;;
+                $kak_opt_wrapify_mapping_action_wrap_around_shortcut) echo wrapify-wrap-around-action-shortcut ;;
+                $kak_opt_wrapify_iterate_current_search)              echo wrapify-iterate ;;
                 *) echo wrapify-action-replace-with-key
             esac
         }
@@ -107,6 +109,7 @@ define-command wrapify-action-select -hidden %{
 }
 
 define-command wrapify-action -docstring 'Search for a wrapping and perform an action on it' %{
+    wrapify-info action
     on-key %{
         wrapify-position-save-user
         try %{

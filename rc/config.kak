@@ -4,10 +4,12 @@ declare-option -hidden str wrapify_mapping_action_select_inner
 declare-option -hidden str wrapify_mapping_action_select_outer
 declare-option -hidden str wrapify_mapping_action_delete
 declare-option -hidden str wrapify_mapping_action_replace
-declare-option -hidden str wrapify_mapping_action_wrap_within_shorcut
-declare-option -hidden str wrapify_mapping_action_wrap_around_shorcut
+declare-option -hidden str wrapify_mapping_action_wrap_within_shortcut
+declare-option -hidden str wrapify_mapping_action_wrap_around_shortcut
 declare-option -hidden str wrapify_mapping_wrap_shortcut
 declare-option -hidden str wrapify_mapping_cancel
+
+declare-option -hidden bool wrapify_show_key_tips
 
 # Suggested defaults
 # Load them with `require-module wrapify-load-defaults`
@@ -16,10 +18,12 @@ provide-module wrapify-load-defaults %{
     set-option global wrapify_mapping_action_select_outer 'a'
     set-option global wrapify_mapping_action_delete 'd'
     set-option global wrapify_mapping_action_replace 'r'
-    set-option global wrapify_mapping_action_wrap_within_shorcut 'c'
-    set-option global wrapify_mapping_action_wrap_around_shorcut 's'
+    set-option global wrapify_mapping_action_wrap_within_shortcut 'c'
+    set-option global wrapify_mapping_action_wrap_around_shortcut 's'
     set-option global wrapify_mapping_wrap_shortcut 's'
     set-option global wrapify_mapping_cancel '<esc>'
+
+    set-option global wrapify_show_key_tips true
 
     define-command undo %{
         try %{ wrapify-undo } catch %{ try %{ execute-keys u } }
