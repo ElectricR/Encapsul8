@@ -106,7 +106,7 @@ define-command wrapify-action-select -hidden %{
     wrapify-action-switch "%val{key}" # async
 }
 
-define-command wrapify-action %{
+define-command wrapify-action -docstring 'Search for a wrapping and perform an action on it' %{
     on-key %{
         wrapify-position-save-user
         try %{

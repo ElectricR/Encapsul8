@@ -7,7 +7,7 @@ provide-module wrapify-undo-simple %{
         set-option window wrapify_undo_saved_selections "%opt{wrapify_position_save_user}"
     }
 
-    define-command wrapify-undo -override %{
+    define-command wrapify-undo -override -docstring 'Try to undo the last change, if it was made by Wrapify (simple version)' %{
         evaluate-commands %sh{
             ( [[ $kak_opt_wrapify_undo_history_id == $kak_history_id ]] && echo nop ) || echo fail
         }
@@ -15,7 +15,7 @@ provide-module wrapify-undo-simple %{
         wrapify-position-restore "%opt{wrapify_undo_saved_selections}"
     }
 
-    define-command wrapify-redo -override %{
+    define-command wrapify-redo -override -docstring 'Try to redo the last change, if it was made by Wrapify (simple version)' %{
         execute-keys "U"
         try %{
             evaluate-commands %sh{

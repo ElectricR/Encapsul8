@@ -29,7 +29,7 @@ define-command wrapify-wrap-exec -hidden %{
     }
 }
 
-define-command wrapify-wrap %{
+define-command wrapify-wrap -docstring 'Wrap the current selection with a chosen character' %{
     wrapify-position-save-user
     wrapify-wrap-exec
 }
