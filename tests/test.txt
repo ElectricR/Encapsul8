@@ -313,3 +313,19 @@ function main <
 # Test multifile undo
 ### TEST_89 ###
 "(test)"
+
+
+# Test wrapping with selection short path
+### TEST_90 ###
+"(test)"
+
+### TEST_91 ###
+"(test)"
+
+
+# Test cancellation for short path wrapping
+### TEST_92 ###
+"(test)"
+
+### TEST_93 ###
+"(test)"

@@ -108,6 +108,10 @@ define-command run-tests -override %{
     test-87
     test-88
     test-89
+    test-90
+    test-91
+    test-92
+    test-93
     test-no-pending-changes
     echo 'Success!'
 }
@@ -922,4 +926,52 @@ define-command test-89 -override %{
     execute-keys ':db!<ret>'
     execute-keys -with-hooks -with-maps 'u'
     check-selection-with 'e'
+}
+
+define-command test-90 -override %{
+    find-test "90"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm)s]'
+    wrapify-undo-save # explicit call, known issue
+    execute-keys 'xH'
+    check-selection-with '"[(test)]"'
+    execute-keys -with-hooks -with-maps 'u'
+    check-selection-with 'e'
+}
+
+define-command test-91 -override %{
+    find-test "91"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm)c]'
+    wrapify-undo-save # explicit call, known issue
+    execute-keys 'xH'
+    check-selection-with '"([test])"'
+    execute-keys -with-hooks -with-maps 'u'
+    check-selection-with 'e'
+}
+
+define-command test-92 -override %{
+    find-test "92"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm)c'
+    check-selection-with 'test'
+    try %{
+        execute-keys -with-hooks -with-maps '<esc>'
+    }
+    check-selection-with 'e'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
+}
+
+define-command test-93 -override %{
+    find-test "93"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm)s'
+    check-selection-with '(test)'
+    try %{
+        execute-keys -with-hooks -with-maps '<esc>'
+    }
+    check-selection-with 'e'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
 }

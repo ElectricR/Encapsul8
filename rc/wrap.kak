@@ -21,11 +21,15 @@ define-command wrapify-wrap-add-pair-based-on -hidden -params 1 %{
     }
 }
 
-define-command wrapify-wrap %{
+define-command wrapify-wrap-exec -hidden %{
     on-key %{
-        wrapify-check-cancel %val{key}
-        wrapify-position-save-user
+        wrapify-check-cancel-with-user-position-restore %val{key}
         wrapify-wrap-add-pair-based-on %val{key}
         wrapify-undo-save
     }
+}
+
+define-command wrapify-wrap %{
+    wrapify-position-save-user
+    wrapify-wrap-exec
 }

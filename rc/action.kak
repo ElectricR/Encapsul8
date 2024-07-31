@@ -61,6 +61,19 @@ define-command wrapify-iterate -hidden %{
 }
 
 #####################
+# Wrapify wrap wrappers
+#####################
+define-command wrapify-wrap-around-action-shortcut -hidden %{
+    wrapify-action-select-outer
+    wrapify-wrap-exec
+}
+
+define-command wrapify-wrap-within-action-shortcut -hidden %{
+    wrapify-action-select-inner
+    wrapify-wrap-exec
+}
+
+#####################
 # Action switch
 #####################
 define-command wrapify-action-switch -params 1 -hidden %{
@@ -68,11 +81,13 @@ define-command wrapify-action-switch -params 1 -hidden %{
         wrapify-check-cancel-with-user-position-restore %val{key}
         %sh{
             case $kak_key in
-                $kak_opt_wrapify_mapping_action_select_inner) echo wrapify-action-select-inner ;;
-                $kak_opt_wrapify_mapping_action_select_outer) echo wrapify-action-select-outer ;;
-                $kak_opt_wrapify_mapping_action_delete)       echo wrapify-action-delete ;;
-                $kak_opt_wrapify_mapping_action_replace)      echo wrapify-action-replace ;;
-                $kak_opt_wrapify_iterate_current_search)      echo wrapify-iterate ;;
+                $kak_opt_wrapify_mapping_action_select_inner)        echo wrapify-action-select-inner ;;
+                $kak_opt_wrapify_mapping_action_select_outer)        echo wrapify-action-select-outer ;;
+                $kak_opt_wrapify_mapping_action_delete)              echo wrapify-action-delete ;;
+                $kak_opt_wrapify_mapping_action_replace)             echo wrapify-action-replace ;;
+                $kak_opt_wrapify_mapping_action_wrap_within_shorcut) echo wrapify-wrap-within-action-shortcut ;;
+                $kak_opt_wrapify_mapping_action_wrap_around_shorcut) echo wrapify-wrap-around-action-shortcut ;;
+                $kak_opt_wrapify_iterate_current_search)             echo wrapify-iterate ;;
                 *) echo wrapify-action-replace-with-key
             esac
         }
@@ -80,7 +95,7 @@ define-command wrapify-action-switch -params 1 -hidden %{
 }
 
 define-command wrapify-action-select -hidden %{
-    wrapify-check-cancel %val{key}
+    wrapify-check-cancel-with-user-position-restore %val{key}
     try %{
         wrapify-search-pair "%val{key}"
     } catch %{
@@ -93,13 +108,13 @@ define-command wrapify-action-select -hidden %{
 
 define-command wrapify-action %{
     on-key %{
+        wrapify-position-save-user
         try %{
             evaluate-commands %sh{
                 [[ $kak_key == $kak_opt_wrapify_mapping_wrap_shortcut ]] && echo nop || echo fail
             }
-            wrapify-wrap # async
+            wrapify-wrap-exec # async
         } catch %{
-            wrapify-position-save-user
             set-option window wrapify_iterate_current_search "%val{key}"
             wrapify-action-select
         }

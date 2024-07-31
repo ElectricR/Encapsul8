@@ -4,6 +4,8 @@ declare-option -hidden str wrapify_mapping_action_select_inner
 declare-option -hidden str wrapify_mapping_action_select_outer
 declare-option -hidden str wrapify_mapping_action_delete
 declare-option -hidden str wrapify_mapping_action_replace
+declare-option -hidden str wrapify_mapping_action_wrap_within_shorcut
+declare-option -hidden str wrapify_mapping_action_wrap_around_shorcut
 declare-option -hidden str wrapify_mapping_wrap_shortcut
 declare-option -hidden str wrapify_mapping_cancel
 
@@ -14,6 +16,8 @@ provide-module wrapify-load-defaults %{
     set-option global wrapify_mapping_action_select_outer 'a'
     set-option global wrapify_mapping_action_delete 'd'
     set-option global wrapify_mapping_action_replace 'r'
+    set-option global wrapify_mapping_action_wrap_within_shorcut 'c'
+    set-option global wrapify_mapping_action_wrap_around_shorcut 's'
     set-option global wrapify_mapping_wrap_shortcut 's'
     set-option global wrapify_mapping_cancel '<esc>'
 
