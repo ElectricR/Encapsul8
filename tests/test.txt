@@ -329,3 +329,86 @@ function main <
 
 ### TEST_93 ###
 "(test)"
+
+
+# Test character hotkeys
+### TEST_94 ###
+"(test)"
+
+### TEST_95 ###
+"{test}"
+
+### TEST_96 ###
+"[test]"
+
+### TEST_97 ###
+"<test>"
+
+### TEST_98 ###
+"'test'"
+
+### TEST_99 ###
+("test")
+
+### TEST_100 ###
+"`test`"
+
+### TEST_101 ###
+"test"
+
+### TEST_102 ###
+"test"
+
+### TEST_103 ###
+"test"
+
+### TEST_104 ###
+"test"
+
+### TEST_105 ###
+"test"
+
+### TEST_106 ###
+(test)
+
+### TEST_107 ###
+"test"
+
+### TEST_108 ###
+"test"
+
+### TEST_109 ###
+"test"
+
+### TEST_110 ###
+"test"
+
+### TEST_111 ###
+"test"
+
+### TEST_112 ###
+"test"
+
+### TEST_113 ###
+(test)
+
+### TEST_114 ###
+"test"
+
+
+# Test that dedicated replace won't use hotkeys
+### TEST_115 ###
+"test"
+
+
+# Test hotkeys with selection chaining
+### TEST_116 ###
+"((((test))))"
+
+
+# Test hotkeys with quick wrap
+### TEST_117 ###
+"(test)"
+
+### TEST_118 ###
+"(test)"

@@ -17,15 +17,18 @@ define-command wrapify-wrap-add-pair-based-on -hidden -params 1 %{
             '"')           echo wrapify-wrap-add-pair '\"' '\"' ;;
             "'")           echo wrapify-wrap-add-pair "\'" "\'" ;;
             *)             echo wrapify-wrap-add-pair "$1" "$1" ;;
+
         esac
     }
 }
 
+declare-option -hidden str wrapify_opt_wrap_resolve_char_hotkey
 define-command wrapify-wrap-exec -hidden %{
     wrapify-info action_wrap
     on-key %{
         wrapify-check-cancel-with-user-position-restore %val{key}
-        wrapify-wrap-add-pair-based-on %val{key}
+        wrapify-resolve-char-hotkey %val{key} wrapify_opt_wrap_resolve_char_hotkey
+        wrapify-wrap-add-pair-based-on %opt{wrapify_opt_wrap_resolve_char_hotkey}
         wrapify-undo-save
     }
 }

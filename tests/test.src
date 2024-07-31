@@ -1,5 +1,6 @@
 # To run tests open test.txt, source this file and run run-tests
 require-module wrapify-load-defaults
+set-option global wrapify_show_key_tips false
 
 ####################
 # Helpers
@@ -112,6 +113,31 @@ define-command run-tests -override %{
     test-91
     test-92
     test-93
+    test-94
+    test-95
+    test-96
+    test-97
+    test-98
+    test-99
+    test-100
+    test-101
+    test-102
+    test-103
+    test-104
+    test-105
+    test-106
+    test-107
+    test-108
+    test-109
+    test-110
+    test-111
+    test-112
+    test-113
+    test-114
+    test-115
+    test-116
+    test-117
+    test-118
     test-no-pending-changes
     echo 'Success!'
 }
@@ -942,7 +968,7 @@ define-command test-90 -override %{
 define-command test-91 -override %{
     find-test "91"
     execute-keys 'tel'
-    execute-keys -with-hooks -with-maps 'm)c]'
+    execute-keys -with-hooks -with-maps 'm)x]'
     wrapify-undo-save # explicit call, known issue
     execute-keys 'xH'
     check-selection-with '"([test])"'
@@ -953,7 +979,7 @@ define-command test-91 -override %{
 define-command test-92 -override %{
     find-test "92"
     execute-keys 'tel'
-    execute-keys -with-hooks -with-maps 'm)c'
+    execute-keys -with-hooks -with-maps 'm)x'
     check-selection-with 'test'
     try %{
         execute-keys -with-hooks -with-maps '<esc>'
@@ -974,4 +1000,204 @@ define-command test-93 -override %{
     check-selection-with 'e'
     execute-keys 'xH'
     check-selection-with '"(test)"'
+}
+
+define-command test-94 -override %{
+    find-test "94"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mpi'
+    check-selection-with 'test'
+}
+
+define-command test-95 -override %{
+    find-test "95"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mci'
+    check-selection-with 'test'
+}
+
+define-command test-96 -override %{
+    find-test "96"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mbi'
+    check-selection-with 'test'
+}
+
+define-command test-97 -override %{
+    find-test "97"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mni'
+    check-selection-with 'test'
+}
+
+define-command test-98 -override %{
+    find-test "98"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mQi'
+    check-selection-with 'test'
+}
+
+define-command test-99 -override %{
+    find-test "99"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mqi'
+    check-selection-with 'test'
+}
+
+define-command test-100 -override %{
+    find-test "100"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mgi'
+    check-selection-with 'test'
+}
+
+define-command test-101 -override %{
+    find-test "101"
+    execute-keys 'tee'
+    execute-keys -with-hooks -with-maps 'msp'
+    check-selection-with '(test)'
+    execute-keys 'u'
+}
+
+define-command test-102 -override %{
+    find-test "102"
+    execute-keys 'tee'
+    execute-keys -with-hooks -with-maps 'msc'
+    check-selection-with '{test}'
+    execute-keys 'u'
+}
+
+define-command test-103 -override %{
+    find-test "103"
+    execute-keys 'tee'
+    execute-keys -with-hooks -with-maps 'msb'
+    check-selection-with '[test]'
+    execute-keys 'u'
+}
+
+define-command test-104 -override %{
+    find-test "104"
+    execute-keys 'tee'
+    execute-keys -with-hooks -with-maps 'msn'
+    check-selection-with '<test>'
+    execute-keys 'u'
+}
+
+define-command test-105 -override %{
+    find-test "105"
+    execute-keys 'tee'
+    execute-keys -with-hooks -with-maps 'msQ'
+    check-selection-with "'test'"
+    execute-keys 'u'
+}
+
+define-command test-106 -override %{
+    find-test "106"
+    execute-keys 'tee'
+    execute-keys -with-hooks -with-maps 'msq'
+    check-selection-with '"test"'
+    execute-keys 'u'
+}
+
+define-command test-107 -override %{
+    find-test "107"
+    execute-keys 'tee'
+    execute-keys -with-hooks -with-maps 'msg'
+    check-selection-with '`test`'
+    execute-keys 'u'
+}
+
+define-command test-108 -override %{
+    find-test "108"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm"p'
+    execute-keys 'xH'
+    check-selection-with '(test)'
+    execute-keys 'u'
+}
+
+define-command test-109 -override %{
+    find-test "109"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm"c'
+    execute-keys 'xH'
+    check-selection-with '{test}'
+    execute-keys 'u'
+}
+
+define-command test-110 -override %{
+    find-test "110"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm"b'
+    execute-keys 'xH'
+    check-selection-with '[test]'
+    execute-keys 'u'
+}
+
+define-command test-111 -override %{
+    find-test "111"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm"n'
+    execute-keys 'xH'
+    check-selection-with '<test>'
+    execute-keys 'u'
+}
+
+define-command test-112 -override %{
+    find-test "112"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm"Q'
+    execute-keys 'xH'
+    check-selection-with "'test'"
+    execute-keys 'u'
+}
+
+define-command test-113 -override %{
+    find-test "113"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm)q'
+    execute-keys 'xH'
+    check-selection-with '"test"'
+    execute-keys 'u'
+}
+
+define-command test-114 -override %{
+    find-test "114"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm"g'
+    execute-keys 'xH'
+    check-selection-with '`test`'
+    execute-keys 'u'
+}
+
+define-command test-115 -override %{
+    find-test "115"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm"rg'
+    execute-keys 'xH'
+    check-selection-with 'gtestg'
+    execute-keys 'u'
+}
+
+define-command test-116 -override %{
+    find-test "116"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mpppi'
+    check-selection-with '((test))'
+}
+
+define-command test-117 -override %{
+    find-test "117"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mpxb'
+    check-selection-with '[test]'
+    execute-keys 'u'
+}
+
+define-command test-118 -override %{
+    find-test "118"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mpsb'
+    check-selection-with '[(test)]'
+    execute-keys 'u'
 }

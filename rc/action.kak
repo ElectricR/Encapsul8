@@ -47,8 +47,10 @@ define-command wrapify-action-replace -hidden %{
     }
 }
 
-define-command wrapify-action-replace-with-key -hidden %{
-    wrapify-action-replace-with %val{key}
+declare-option -hidden str wrapify_opt_quick_replace_resolve_char_hotkey
+define-command wrapify-action-quick-replace -hidden %{
+    wrapify-resolve-char-hotkey %val{key} wrapify_opt_quick_replace_resolve_char_hotkey
+    wrapify-action-replace-with %opt{wrapify_opt_quick_replace_resolve_char_hotkey}
 }
 
 #####################
@@ -90,7 +92,7 @@ define-command wrapify-action-switch -params 1 -hidden %{
                 $kak_opt_wrapify_mapping_action_wrap_within_shortcut) echo wrapify-wrap-within-action-shortcut ;;
                 $kak_opt_wrapify_mapping_action_wrap_around_shortcut) echo wrapify-wrap-around-action-shortcut ;;
                 $kak_opt_wrapify_iterate_current_search)              echo wrapify-iterate ;;
-                *) echo wrapify-action-replace-with-key
+                *)                                                    echo wrapify-action-quick-replace
             esac
         }
     }

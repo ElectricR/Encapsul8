@@ -9,6 +9,14 @@ declare-option -hidden str wrapify_mapping_action_wrap_around_shortcut
 declare-option -hidden str wrapify_mapping_wrap_shortcut
 declare-option -hidden str wrapify_mapping_cancel
 
+declare-option -hidden str wrapify_mapping_match_parentheses
+declare-option -hidden str wrapify_mapping_match_square_brackets
+declare-option -hidden str wrapify_mapping_match_braces
+declare-option -hidden str wrapify_mapping_match_angle_brackets
+declare-option -hidden str wrapify_mapping_match_single_quote
+declare-option -hidden str wrapify_mapping_match_double_quote
+declare-option -hidden str wrapify_mapping_match_grave
+
 declare-option -hidden bool wrapify_show_key_tips
 
 # Suggested defaults
@@ -18,10 +26,18 @@ provide-module wrapify-load-defaults %{
     set-option global wrapify_mapping_action_select_outer 'a'
     set-option global wrapify_mapping_action_delete 'd'
     set-option global wrapify_mapping_action_replace 'r'
-    set-option global wrapify_mapping_action_wrap_within_shortcut 'c'
+    set-option global wrapify_mapping_action_wrap_within_shortcut 'x'
     set-option global wrapify_mapping_action_wrap_around_shortcut 's'
     set-option global wrapify_mapping_wrap_shortcut 's'
     set-option global wrapify_mapping_cancel '<esc>'
+
+    set-option global wrapify_mapping_match_parentheses 'p'
+    set-option global wrapify_mapping_match_square_brackets 'b'
+    set-option global wrapify_mapping_match_braces 'c'
+    set-option global wrapify_mapping_match_angle_brackets 'n'
+    set-option global wrapify_mapping_match_single_quote 'Q'
+    set-option global wrapify_mapping_match_double_quote 'q'
+    set-option global wrapify_mapping_match_grave 'g'
 
     set-option global wrapify_show_key_tips true
 

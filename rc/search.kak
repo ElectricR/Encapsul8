@@ -15,10 +15,12 @@ define-command wrapify-search-with-kakoune -hidden -params 1 %{
 declare-option -hidden str wrapify_opt_brace '}'
 declare-option -hidden str wrapify_opt_brace_rev '{'
 declare-option -hidden str wrapify_opt_direction
+declare-option -hidden str wrapify_opt_search_resolve_char_hotkey
 define-command wrapify-search-pair -hidden -params 1 %{
+    wrapify-resolve-char-hotkey %arg{1} wrapify_opt_search_resolve_char_hotkey
     try %sh{
-        case $1 in
-            '('|')'|"{"|"}"|'<lt>'|'<gt>'|'['|']'|'`') echo wrapify-search-with-kakoune "$1" ;;
+        case $kak_opt_wrapify_opt_search_resolve_char_hotkey in
+            '('|')'|"{"|"}"|'<lt>'|'<gt>'|'['|']'|'`') echo wrapify-search-with-kakoune "$kak_opt_wrapify_opt_search_resolve_char_hotkey" ;;
             '"') echo wrapify-search-with-kakoune '\"' ;;
             "'") echo wrapify-search-with-kakoune "\'" ;;
             '.'|'*'|','|'?'|'^'|'|'|"<plus>"|'$') echo wrapify-search-with-kakoune "c\\$1,\\$1<ret>" ;;
@@ -35,7 +37,7 @@ define-command wrapify-search-pair -hidden -params 1 %{
             set-option window wrapify_opt_direction 'f'
         }
         try %{
-            wrapify-search-in-direction %opt{wrapify_opt_direction} %arg{1}
+            wrapify-search-in-direction %opt{wrapify_opt_direction} %opt{wrapify_opt_search_resolve_char_hotkey}
             wrapify-search-pair %arg{1}
         } catch %{
             fail Could not find requested pair
