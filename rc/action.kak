@@ -1,127 +1,127 @@
 #####################
 # Select inner
 #####################
-define-command wrapify-action-select-inner -hidden %{
-    wrapify-position-restore-last-search
+define-command encapsul8-action-select-inner -hidden %{
+    encapsul8-position-restore-last-search
     execute-keys "H<a-;>L<a-;>"
 }
 
 #####################
 # Select outer
 #####################
-define-command wrapify-action-select-outer -hidden %{
-    wrapify-position-restore-last-search
+define-command encapsul8-action-select-outer -hidden %{
+    encapsul8-position-restore-last-search
 }
 
 #####################
 # Delete
 #####################
-define-command wrapify-action-delete -hidden %{
+define-command encapsul8-action-delete -hidden %{
     execute-keys "d"
-    wrapify-undo-save
-    wrapify-position-restore-user
+    encapsul8-undo-save
+    encapsul8-position-restore-user
 }
 
 
 #####################
 # Replace
 #####################
-define-command wrapify-action-replace-with -hidden -params 1 %{
+define-command encapsul8-action-replace-with -hidden -params 1 %{
     # eval here to perform only one history_id change
     evaluate-commands %{
-        wrapify-position-restore-last-search
-        wrapify-wrap-add-pair-based-on %arg{1}
-        wrapify-position-restore-last-search
-        wrapify-highlight-wrapping
+        encapsul8-position-restore-last-search
+        encapsul8-wrap-add-pair-based-on %arg{1}
+        encapsul8-position-restore-last-search
+        encapsul8-highlight-wrapping
         execute-keys "d"
     }
-    wrapify-undo-save
-    wrapify-position-restore-user
+    encapsul8-undo-save
+    encapsul8-position-restore-user
 }
 
-define-command wrapify-action-replace -hidden %{
-    wrapify-info action_replace
+define-command encapsul8-action-replace -hidden %{
+    encapsul8-info action_replace
     on-key %{
-        wrapify-check-cancel-with-user-position-restore %val{key}
-        wrapify-action-replace-with %val{key}
+        encapsul8-check-cancel-with-user-position-restore %val{key}
+        encapsul8-action-replace-with %val{key}
     }
 }
 
-declare-option -hidden str wrapify_opt_quick_replace_resolve_char_hotkey
-define-command wrapify-action-quick-replace -hidden %{
-    wrapify-resolve-char-hotkey %val{key} wrapify_opt_quick_replace_resolve_char_hotkey
-    wrapify-action-replace-with %opt{wrapify_opt_quick_replace_resolve_char_hotkey}
+declare-option -hidden str encapsul8_opt_quick_replace_resolve_char_hotkey
+define-command encapsul8-action-quick-replace -hidden %{
+    encapsul8-resolve-char-hotkey %val{key} encapsul8_opt_quick_replace_resolve_char_hotkey
+    encapsul8-action-replace-with %opt{encapsul8_opt_quick_replace_resolve_char_hotkey}
 }
 
 #####################
 # Iterate
 #####################
-declare-option -hidden str wrapify_iterate_current_search
+declare-option -hidden str encapsul8_iterate_current_search
 
-define-command wrapify-iterate -hidden %{
-    wrapify-position-restore-last-search
-    wrapify-action-select
+define-command encapsul8-iterate -hidden %{
+    encapsul8-position-restore-last-search
+    encapsul8-action-select
 }
 
 #####################
-# Wrapify wrap wrappers
+# Encapsul8 wrap wrappers
 #####################
-define-command wrapify-wrap-around-action-shortcut -hidden %{
-    wrapify-action-select-outer
-    wrapify-wrap-exec
+define-command encapsul8-wrap-around-action-shortcut -hidden %{
+    encapsul8-action-select-outer
+    encapsul8-wrap-exec
 }
 
-define-command wrapify-wrap-within-action-shortcut -hidden %{
-    wrapify-action-select-inner
-    wrapify-wrap-exec
+define-command encapsul8-wrap-within-action-shortcut -hidden %{
+    encapsul8-action-select-inner
+    encapsul8-wrap-exec
 }
 
 #####################
 # Action switch
 #####################
-define-command wrapify-action-switch -params 1 -hidden %{
-    wrapify-info action_switch
+define-command encapsul8-action-switch -params 1 -hidden %{
+    encapsul8-info action_switch
     on-key %{
-        wrapify-check-cancel-with-user-position-restore %val{key}
+        encapsul8-check-cancel-with-user-position-restore %val{key}
         %sh{
             case $kak_key in
-                $kak_opt_wrapify_mapping_action_select_inner)         echo wrapify-action-select-inner ;;
-                $kak_opt_wrapify_mapping_action_select_outer)         echo wrapify-action-select-outer ;;
-                $kak_opt_wrapify_mapping_action_delete)               echo wrapify-action-delete ;;
-                $kak_opt_wrapify_mapping_action_replace)              echo wrapify-action-replace ;;
-                $kak_opt_wrapify_mapping_action_wrap_within_shortcut) echo wrapify-wrap-within-action-shortcut ;;
-                $kak_opt_wrapify_mapping_action_wrap_around_shortcut) echo wrapify-wrap-around-action-shortcut ;;
-                $kak_opt_wrapify_iterate_current_search)              echo wrapify-iterate ;;
-                *)                                                    echo wrapify-action-quick-replace
+                $kak_opt_encapsul8_mapping_action_select_inner)         echo encapsul8-action-select-inner ;;
+                $kak_opt_encapsul8_mapping_action_select_outer)         echo encapsul8-action-select-outer ;;
+                $kak_opt_encapsul8_mapping_action_delete)               echo encapsul8-action-delete ;;
+                $kak_opt_encapsul8_mapping_action_replace)              echo encapsul8-action-replace ;;
+                $kak_opt_encapsul8_mapping_action_wrap_within_shortcut) echo encapsul8-wrap-within-action-shortcut ;;
+                $kak_opt_encapsul8_mapping_action_wrap_around_shortcut) echo encapsul8-wrap-around-action-shortcut ;;
+                $kak_opt_encapsul8_iterate_current_search)              echo encapsul8-iterate ;;
+                *)                                                    echo encapsul8-action-quick-replace
             esac
         }
     }
 }
 
-define-command wrapify-action-select -hidden %{
-    wrapify-check-cancel-with-user-position-restore %val{key}
+define-command encapsul8-action-select -hidden %{
+    encapsul8-check-cancel-with-user-position-restore %val{key}
     try %{
-        wrapify-search-pair "%val{key}"
+        encapsul8-search-pair "%val{key}"
     } catch %{
-        wrapify-position-restore-user
+        encapsul8-position-restore-user
         fail "%val{error}"
     }
-    wrapify-highlight-wrapping
-    wrapify-action-switch "%val{key}" # async
+    encapsul8-highlight-wrapping
+    encapsul8-action-switch "%val{key}" # async
 }
 
-define-command wrapify-action -docstring 'Search for a wrapping and perform an action on it' %{
-    wrapify-info action
+define-command encapsul8-action -docstring 'Search for a wrapping and perform an action on it' %{
+    encapsul8-info action
     on-key %{
-        wrapify-position-save-user
+        encapsul8-position-save-user
         try %{
             evaluate-commands %sh{
-                [[ $kak_key == $kak_opt_wrapify_mapping_wrap_shortcut ]] && echo nop || echo fail
+                [[ $kak_key == $kak_opt_encapsul8_mapping_wrap_shortcut ]] && echo nop || echo fail
             }
-            wrapify-wrap-exec # async
+            encapsul8-wrap-exec # async
         } catch %{
-            set-option window wrapify_iterate_current_search "%val{key}"
-            wrapify-action-select
+            set-option window encapsul8_iterate_current_search "%val{key}"
+            encapsul8-action-select
         }
     }
 }

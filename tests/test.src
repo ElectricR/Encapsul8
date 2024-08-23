@@ -1,6 +1,6 @@
 # To run tests open test.txt, source this file and run run-tests
-require-module wrapify-load-defaults
-set-option global wrapify_show_key_tips false
+require-module encapsul8-load-defaults
+set-option global encapsul8_show_key_tips false
 
 ####################
 # Helpers
@@ -159,7 +159,7 @@ define-command test-1 -override %{
 
 define-command test-2 -override %{
     find-test "2"
-    execute-keys -with-maps -with-hooks "llm%opt{wrapify_opt_brace}a"
+    execute-keys -with-maps -with-hooks "llm%opt{encapsul8_opt_brace}a"
     check-selection-with '{test}'
 }
 
@@ -201,7 +201,7 @@ define-command test-8 -override %{
 
 define-command test-9 -override %{
     find-test "9"
-    execute-keys -with-maps -with-hooks "llm%opt{wrapify_opt_brace}i"
+    execute-keys -with-maps -with-hooks "llm%opt{encapsul8_opt_brace}i"
     check-selection-with 'test'
 }
 
@@ -247,7 +247,7 @@ define-command test-15 -override %{
 
 define-command test-16 -override %{
     find-test "16"
-    execute-keys -with-maps -with-hooks "llm%opt{wrapify_opt_brace}d"
+    execute-keys -with-maps -with-hooks "llm%opt{encapsul8_opt_brace}d"
     execute-keys 'xH'
     check-selection-with '"test"'
     execute-keys -with-maps -with-hooks 'u'
@@ -317,7 +317,7 @@ define-command test-22 -override %{
 
 define-command test-23 -override %{
     find-test "23"
-    execute-keys -with-maps -with-hooks "llm%opt{wrapify_opt_brace}rX"
+    execute-keys -with-maps -with-hooks "llm%opt{encapsul8_opt_brace}rX"
     execute-keys 'xH'
     check-selection-with '"XtestX"'
     execute-keys -with-maps -with-hooks 'u'
@@ -387,7 +387,7 @@ define-command test-29 -override %{
 
 define-command test-30 -override %{
     find-test "30"
-    execute-keys -with-maps -with-hooks 'llm"ams' "%opt{wrapify_opt_brace}"
+    execute-keys -with-maps -with-hooks 'llm"ams' "%opt{encapsul8_opt_brace}"
     execute-keys 'xH'
     check-selection-with '{"test"}'
     execute-keys -with-maps -with-hooks 'u'
@@ -453,7 +453,7 @@ define-command test-36 -override %{
 
 define-command test-37 -override %{
     find-test "37"
-    execute-keys -with-maps -with-hooks "txm%opt{wrapify_opt_brace_rev}i"
+    execute-keys -with-maps -with-hooks "txm%opt{encapsul8_opt_brace_rev}i"
     check-selection-with "bob"
 }
 
@@ -477,7 +477,7 @@ define-command test-40 -override %{
 
 define-command test-41 -override %{
     find-test "41"
-    execute-keys -with-maps -with-hooks "txm%opt{wrapify_opt_brace}i"
+    execute-keys -with-maps -with-hooks "txm%opt{encapsul8_opt_brace}i"
     check-selection-with "alice"
 }
 
@@ -613,7 +613,7 @@ define-command test-58 -override %{
 define-command test-59 -override %{
     find-test "59"
     execute-keys 'jti'
-    execute-keys -with-maps -with-hooks "m<r%opt{wrapify_opt_brace}"
+    execute-keys -with-maps -with-hooks "m<r%opt{encapsul8_opt_brace}"
     execute-keys 'kxJJH'
     check-selection-with %sh{ printf 'function main {\n    echo `echo "hi"`\n}' }
     execute-keys -with-maps -with-hooks 'u'
@@ -623,7 +623,7 @@ define-command test-60 -override %{
     find-test "60"
     execute-keys 'tel'
     execute-keys -with-maps -with-hooks "m)d"
-    wrapify-undo-save # explicit call, known issue
+    encapsul8-undo-save # explicit call, known issue
     check-selection-with 'e'
     execute-keys -with-maps -with-hooks 'u'
     check-selection-with 'e'
@@ -633,7 +633,7 @@ define-command test-61 -override %{
     find-test "61"
     execute-keys 'tel'
     execute-keys -with-maps -with-hooks "m)r<"
-    wrapify-undo-save # explicit call, known issue
+    encapsul8-undo-save # explicit call, known issue
     check-selection-with 'e'
     execute-keys -with-maps -with-hooks 'u'
     check-selection-with 'e'
@@ -643,7 +643,7 @@ define-command test-62 -override %{
     find-test "62"
     execute-keys 'tee'
     execute-keys -with-maps -with-hooks "ms)"
-    wrapify-undo-save # explicit call, known issue
+    encapsul8-undo-save # explicit call, known issue
     check-selection-with '(test)'
     execute-keys -with-maps -with-hooks 'u'
     check-selection-with 'test'
@@ -718,7 +718,7 @@ define-command test-66 -override %{
     find-test "66"
     execute-keys 'tel'
     execute-keys -with-maps -with-hooks "m)d"
-    wrapify-undo-save # explicit call, known issue
+    encapsul8-undo-save # explicit call, known issue
     execute-keys -with-maps -with-hooks 'u'
     execute-keys -with-maps -with-hooks 'U'
     check-selection-with 'e'
@@ -729,7 +729,7 @@ define-command test-67 -override %{
     find-test "67"
     execute-keys 'tel'
     execute-keys -with-maps -with-hooks "m)r<"
-    wrapify-undo-save # explicit call, known issue
+    encapsul8-undo-save # explicit call, known issue
     execute-keys -with-maps -with-hooks 'u'
     execute-keys -with-maps -with-hooks 'U'
     check-selection-with 'e'
@@ -755,13 +755,13 @@ define-command test-69 -override %{
 
     declare-option -hidden bool test_69_failed true
     try %{
-        wrapify-undo
+        encapsul8-undo
         set-option window test_69_failed false
     }
     try %sh{
         $kak_opt_test_69_failed && echo nop || echo fail
     } catch %{
-        fail Wrapify undo should not deal with other's changes
+        fail Encapsul8 undo should not deal with other's changes
     }
     execute-keys 'u'
 }
@@ -942,10 +942,10 @@ define-command test-89 -override %{
     execute-keys ':e test2<ret>'
     execute-keys 'itest<esc>b'
     execute-keys -with-hooks -with-maps 'ms)'
-    wrapify-undo-save # explicit call, known issue
+    encapsul8-undo-save # explicit call, known issue
     execute-keys ':b test.txt<ret>'
     execute-keys -with-hooks -with-maps 'm)d'
-    wrapify-undo-save # explicit call, known issue
+    encapsul8-undo-save # explicit call, known issue
     execute-keys ':b test2<ret>'
     execute-keys -with-hooks -with-maps 'u'
     check-selection-with 'test'
@@ -958,7 +958,7 @@ define-command test-90 -override %{
     find-test "90"
     execute-keys 'tel'
     execute-keys -with-hooks -with-maps 'm)s]'
-    wrapify-undo-save # explicit call, known issue
+    encapsul8-undo-save # explicit call, known issue
     execute-keys 'xH'
     check-selection-with '"[(test)]"'
     execute-keys -with-hooks -with-maps 'u'
@@ -969,7 +969,7 @@ define-command test-91 -override %{
     find-test "91"
     execute-keys 'tel'
     execute-keys -with-hooks -with-maps 'm)x]'
-    wrapify-undo-save # explicit call, known issue
+    encapsul8-undo-save # explicit call, known issue
     execute-keys 'xH'
     check-selection-with '"([test])"'
     execute-keys -with-hooks -with-maps 'u'

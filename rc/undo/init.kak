@@ -1,32 +1,32 @@
-declare-option -hidden bool wrapify_undo_jq_detected %sh{
+declare-option -hidden bool encapsul8_undo_jq_detected %sh{
     ( [[ -n $(jq -h | tr -d '\n') ]] && echo true ) || echo false
 }
 
-declare-option -hidden str wrapify_undo_provider %sh{
-    if $kak_opt_wrapify_undo_jq_detected; then
+declare-option -hidden str encapsul8_undo_provider %sh{
+    if $kak_opt_encapsul8_undo_jq_detected; then
         echo jq
     else
         echo simple
     fi
 }
 
-define-command wrapify-undo-save -hidden -override %{
+define-command encapsul8-undo-save -hidden -override %{
     require-module %sh{
-        printf "wrapify-undo-$kak_opt_wrapify_undo_provider"
+        printf "encapsul8-undo-$kak_opt_encapsul8_undo_provider"
     }
-    wrapify-undo-save
+    encapsul8-undo-save
 }
 
-define-command wrapify-undo -docstring 'Try to undo the last change, if it was made by Wrapify' %{
+define-command encapsul8-undo -docstring 'Try to undo the last change, if it was made by Encapsul8' %{
     require-module %sh{
-        printf "wrapify-undo-$kak_opt_wrapify_undo_provider"
+        printf "encapsul8-undo-$kak_opt_encapsul8_undo_provider"
     }
-    wrapify-undo
+    encapsul8-undo
 }
 
-define-command wrapify-redo -docstring 'Try to redo the last change, if it was made by Wrapify' %{
+define-command encapsul8-redo -docstring 'Try to redo the last change, if it was made by Encapsul8' %{
     require-module %sh{
-        printf "wrapify-undo-$kak_opt_wrapify_undo_provider"
+        printf "encapsul8-undo-$kak_opt_encapsul8_undo_provider"
     }
-    wrapify-redo
+    encapsul8-redo
 }

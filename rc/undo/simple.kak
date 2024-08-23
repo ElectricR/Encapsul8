@@ -1,27 +1,27 @@
-provide-module wrapify-undo-simple %{
-    declare-option -hidden int wrapify_undo_history_id
-    declare-option -hidden str wrapify_undo_saved_selections
+provide-module encapsul8-undo-simple %{
+    declare-option -hidden int encapsul8_undo_history_id
+    declare-option -hidden str encapsul8_undo_saved_selections
 
-    define-command wrapify-undo-save -hidden -override %{
-        set-option window wrapify_undo_history_id %val{history_id}
-        set-option window wrapify_undo_saved_selections "%opt{wrapify_position_save_user}"
+    define-command encapsul8-undo-save -hidden -override %{
+        set-option window encapsul8_undo_history_id %val{history_id}
+        set-option window encapsul8_undo_saved_selections "%opt{encapsul8_position_save_user}"
     }
 
-    define-command wrapify-undo -override -docstring 'Try to undo the last change, if it was made by Wrapify (simple version)' %{
+    define-command encapsul8-undo -override -docstring 'Try to undo the last change, if it was made by Encapsul8 (simple version)' %{
         evaluate-commands %sh{
-            ( [[ $kak_opt_wrapify_undo_history_id == $kak_history_id ]] && echo nop ) || echo fail
+            ( [[ $kak_opt_encapsul8_undo_history_id == $kak_history_id ]] && echo nop ) || echo fail
         }
         execute-keys "u"
-        wrapify-position-restore "%opt{wrapify_undo_saved_selections}"
+        encapsul8-position-restore "%opt{encapsul8_undo_saved_selections}"
     }
 
-    define-command wrapify-redo -override -docstring 'Try to redo the last change, if it was made by Wrapify (simple version)' %{
+    define-command encapsul8-redo -override -docstring 'Try to redo the last change, if it was made by Encapsul8 (simple version)' %{
         execute-keys "U"
         try %{
             evaluate-commands %sh{
-                ( [[ $kak_opt_wrapify_undo_history_id == $kak_history_id ]] && echo nop ) || echo fail
+                ( [[ $kak_opt_encapsul8_undo_history_id == $kak_history_id ]] && echo nop ) || echo fail
             }
-            wrapify-position-restore "%opt{wrapify_undo_saved_selections}"
+            encapsul8-position-restore "%opt{encapsul8_undo_saved_selections}"
         } catch %{
             execute-keys "u"
             fail
