@@ -41,13 +41,13 @@ provide-module encapsul8-load-defaults %{
 
     set-option global encapsul8_show_key_tips true
 
-    define-command undo %{
+    define-command encapsul8-undo-helper -docstring "Perform undo and try to restore saved selections" %{
         try %{ encapsul8-undo } catch %{ try %{ execute-keys u } }
     }
-    define-command redo %{
+    define-command encapsul8-redo-helper -docstring "Perform redo and try to restore saved selections" %{
         try %{ encapsul8-redo } catch %{ try %{ execute-keys U } }
     }
-    map global normal u ':undo<ret>' -docstring "Encapsul8-aware undo"
-    map global normal U ':redo<ret>' -docstring "Encapsul8-aware redo"
+    map global normal u ':encapsul8-undo-helper<ret>' -docstring "Encapsul8-aware undo"
+    map global normal U ':encapsul8-redo-helper<ret>' -docstring "Encapsul8-aware redo"
     map global normal m ':encapsul8-action<ret>' -docstring 'Encapsul8 action'
 }
