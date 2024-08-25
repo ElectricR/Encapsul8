@@ -138,6 +138,7 @@ define-command run-tests -override %{
     test-116
     test-117
     test-118
+    test-119
     test-no-pending-changes
     echo 'Success!'
 }
@@ -1199,5 +1200,14 @@ define-command test-118 -override %{
     execute-keys 'tel'
     execute-keys -with-hooks -with-maps 'mpsb'
     check-selection-with '[(test)]'
+    execute-keys 'u'
+}
+
+define-command test-119 -override %{
+    find-test "119"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm*)'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
     execute-keys 'u'
 }

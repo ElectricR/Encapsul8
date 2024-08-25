@@ -85,14 +85,14 @@ define-command encapsul8-action-switch -params 1 -hidden %{
         encapsul8-check-cancel-with-user-position-restore %val{key}
         %sh{
             case $kak_key in
-                $kak_opt_encapsul8_mapping_action_select_inner)         echo encapsul8-action-select-inner ;;
-                $kak_opt_encapsul8_mapping_action_select_outer)         echo encapsul8-action-select-outer ;;
-                $kak_opt_encapsul8_mapping_action_delete)               echo encapsul8-action-delete ;;
-                $kak_opt_encapsul8_mapping_action_replace)              echo encapsul8-action-replace ;;
-                $kak_opt_encapsul8_mapping_action_wrap_within_shortcut) echo encapsul8-wrap-within-action-shortcut ;;
-                $kak_opt_encapsul8_mapping_action_wrap_around_shortcut) echo encapsul8-wrap-around-action-shortcut ;;
-                $kak_opt_encapsul8_iterate_current_search)              echo encapsul8-iterate ;;
-                *)                                                    echo encapsul8-action-quick-replace
+                "$kak_opt_encapsul8_mapping_action_select_inner")         echo encapsul8-action-select-inner ;;
+                "$kak_opt_encapsul8_mapping_action_select_outer")         echo encapsul8-action-select-outer ;;
+                "$kak_opt_encapsul8_mapping_action_delete")               echo encapsul8-action-delete ;;
+                "$kak_opt_encapsul8_mapping_action_replace")              echo encapsul8-action-replace ;;
+                "$kak_opt_encapsul8_mapping_action_wrap_within_shortcut") echo encapsul8-wrap-within-action-shortcut ;;
+                "$kak_opt_encapsul8_mapping_action_wrap_around_shortcut") echo encapsul8-wrap-around-action-shortcut ;;
+                "$kak_opt_encapsul8_iterate_current_search")              echo encapsul8-iterate ;;
+                *)                                                        echo encapsul8-action-quick-replace
             esac
         }
     }

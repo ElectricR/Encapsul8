@@ -412,3 +412,8 @@ function main <
 
 ### TEST_118 ###
 "(test)"
+
+
+# Test quick replace for *
+### TEST_119 ###
+"*test*"
