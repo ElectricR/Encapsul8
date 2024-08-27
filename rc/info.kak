@@ -27,7 +27,7 @@ define-command encapsul8-info -hidden -params 1 %{
             function declare_lefts {
                 for opt in $@; do
                     if [[ -n ${!opt} ]]; then
-                        export left_${opt}=`form_left ${!opt}`
+                        export left_${opt}=`form_left "${!opt}"`
                     fi
                 done
             }
@@ -46,10 +46,10 @@ define-command encapsul8-info -hidden -params 1 %{
                 case $1 in
                     '<lt>') echo '<' ;;
                     '<gt>') echo '>' ;;
-                    *)      echo $1  ;;
+                    *)      echo "$1"  ;;
                 esac
             }
-            kak_opt_encapsul8_iterate_current_search=`translate_a_bit $kak_opt_encapsul8_iterate_current_search`
+            kak_opt_encapsul8_iterate_current_search=`translate_a_bit "$kak_opt_encapsul8_iterate_current_search"`
 
             function filter_current_search {
                 [[ $kak_opt_encapsul8_iterate_current_search != $1 ]] && echo $1
@@ -110,7 +110,7 @@ define-command encapsul8-info -hidden -params 1 %{
                     "kak_opt_encapsul8_mapping_action_wrap_around_shortcut" \
                     "kak_opt_encapsul8_mapping_action_wrap_within_shortcut" \
                     "kak_opt_encapsul8_mapping_cancel"
-                case $kak_opt_encapsul8_iterate_current_search in
+                case "$kak_opt_encapsul8_iterate_current_search" in
                     "$kak_opt_encapsul8_mapping_action_select_inner"| \
                     "$kak_opt_encapsul8_mapping_action_select_outer"| \
                     "$kak_opt_encapsul8_mapping_action_delete"| \
