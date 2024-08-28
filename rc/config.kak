@@ -1,23 +1,23 @@
 # Declaration of user-tweakable options
 
-declare-option -hidden str encapsul8_mapping_action_select_inner
-declare-option -hidden str encapsul8_mapping_action_select_outer
-declare-option -hidden str encapsul8_mapping_action_delete
-declare-option -hidden str encapsul8_mapping_action_replace
-declare-option -hidden str encapsul8_mapping_action_wrap_within_shortcut
-declare-option -hidden str encapsul8_mapping_action_wrap_around_shortcut
-declare-option -hidden str encapsul8_mapping_wrap_shortcut
-declare-option -hidden str encapsul8_mapping_cancel
+declare-option str encapsul8_mapping_action_select_inner
+declare-option str encapsul8_mapping_action_select_outer
+declare-option str encapsul8_mapping_action_delete
+declare-option str encapsul8_mapping_action_replace
+declare-option str encapsul8_mapping_action_wrap_within_shortcut
+declare-option str encapsul8_mapping_action_wrap_around_shortcut
+declare-option str encapsul8_mapping_wrap_shortcut
+declare-option str encapsul8_mapping_cancel
 
-declare-option -hidden str encapsul8_mapping_match_parentheses
-declare-option -hidden str encapsul8_mapping_match_square_brackets
-declare-option -hidden str encapsul8_mapping_match_braces
-declare-option -hidden str encapsul8_mapping_match_angle_brackets
-declare-option -hidden str encapsul8_mapping_match_single_quote
-declare-option -hidden str encapsul8_mapping_match_double_quote
-declare-option -hidden str encapsul8_mapping_match_grave
+declare-option str encapsul8_mapping_match_parentheses
+declare-option str encapsul8_mapping_match_square_brackets
+declare-option str encapsul8_mapping_match_braces
+declare-option str encapsul8_mapping_match_angle_brackets
+declare-option str encapsul8_mapping_match_single_quote
+declare-option str encapsul8_mapping_match_double_quote
+declare-option str encapsul8_mapping_match_grave
 
-declare-option -hidden bool encapsul8_show_key_tips
+declare-option bool encapsul8_show_key_tips
 
 # Suggested defaults
 # Load them with `require-module encapsul8-load-defaults`
