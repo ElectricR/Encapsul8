@@ -17,7 +17,7 @@ declare-option -hidden str encapsul8_opt_brace_rev '{'
 declare-option -hidden str encapsul8_opt_direction
 declare-option -hidden str encapsul8_opt_search_resolve_char_hotkey
 define-command encapsul8-search-pair -hidden -params 1 %{
-    encapsul8-resolve-char-hotkey %arg{1} encapsul8_opt_search_resolve_char_hotkey
+    encapsul8-resolve-char-alias %arg{1} encapsul8_opt_search_resolve_char_hotkey
     try %sh{
         case $kak_opt_encapsul8_opt_search_resolve_char_hotkey in
             '('|')'|"{"|"}"|'<lt>'|'<gt>'|'['|']'|'`') echo encapsul8-search-with-kakoune "$kak_opt_encapsul8_opt_search_resolve_char_hotkey" ;;

@@ -315,7 +315,7 @@ function main <
 "(test)"
 
 
-# Test wrapping with selection short path
+# Test surrounding with selection short path
 ### TEST_90 ###
 "(test)"
 
@@ -323,7 +323,7 @@ function main <
 "(test)"
 
 
-# Test cancellation for short path wrapping
+# Test cancellation for short path surrounding
 ### TEST_92 ###
 "(test)"
 
@@ -406,7 +406,7 @@ function main <
 "((((test))))"
 
 
-# Test hotkeys with quick wrap
+# Test hotkeys with quick surround
 ### TEST_117 ###
 "(test)"
 

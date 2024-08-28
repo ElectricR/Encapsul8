@@ -4,18 +4,18 @@ declare-option str encapsul8_mapping_action_select_inner
 declare-option str encapsul8_mapping_action_select_outer
 declare-option str encapsul8_mapping_action_delete
 declare-option str encapsul8_mapping_action_replace
-declare-option str encapsul8_mapping_action_wrap_within_shortcut
-declare-option str encapsul8_mapping_action_wrap_around_shortcut
-declare-option str encapsul8_mapping_wrap_shortcut
+declare-option str encapsul8_mapping_action_surround_within_shortcut
+declare-option str encapsul8_mapping_action_surround_around_shortcut
+declare-option str encapsul8_mapping_surround_shortcut
 declare-option str encapsul8_mapping_cancel
 
-declare-option str encapsul8_mapping_match_parentheses
-declare-option str encapsul8_mapping_match_square_brackets
-declare-option str encapsul8_mapping_match_braces
-declare-option str encapsul8_mapping_match_angle_brackets
-declare-option str encapsul8_mapping_match_single_quote
-declare-option str encapsul8_mapping_match_double_quote
-declare-option str encapsul8_mapping_match_grave
+declare-option str encapsul8_mapping_alias_parentheses
+declare-option str encapsul8_mapping_alias_square_brackets
+declare-option str encapsul8_mapping_alias_braces
+declare-option str encapsul8_mapping_alias_angle_brackets
+declare-option str encapsul8_mapping_alias_single_quote
+declare-option str encapsul8_mapping_alias_double_quote
+declare-option str encapsul8_mapping_alias_grave
 
 declare-option bool encapsul8_show_key_tips
 
@@ -30,19 +30,19 @@ provide-module encapsul8-load-defaults-local %{
     set-option global encapsul8_mapping_action_select_inner 'i'
     set-option global encapsul8_mapping_action_select_outer 'a'
     set-option global encapsul8_mapping_action_delete 'd'
-    set-option global encapsul8_mapping_action_wrap_within_shortcut 'x'
-    set-option global encapsul8_mapping_action_wrap_around_shortcut 's'
-    set-option global encapsul8_mapping_wrap_shortcut 's'
+    set-option global encapsul8_mapping_action_surround_within_shortcut 'x'
+    set-option global encapsul8_mapping_action_surround_around_shortcut 's'
+    set-option global encapsul8_mapping_surround_shortcut 's'
     set-option global encapsul8_mapping_cancel '<esc>'
     # set-option global encapsul8_mapping_action_replace 'r'
 
-    set-option global encapsul8_mapping_match_parentheses 'p'
-    set-option global encapsul8_mapping_match_square_brackets 'b'
-    set-option global encapsul8_mapping_match_braces 'c'
-    set-option global encapsul8_mapping_match_angle_brackets 'n'
-    set-option global encapsul8_mapping_match_single_quote 'Q'
-    set-option global encapsul8_mapping_match_double_quote 'q'
-    set-option global encapsul8_mapping_match_grave 'g'
+    set-option global encapsul8_mapping_alias_parentheses 'p'
+    set-option global encapsul8_mapping_alias_square_brackets 'b'
+    set-option global encapsul8_mapping_alias_braces 'c'
+    set-option global encapsul8_mapping_alias_angle_brackets 'n'
+    set-option global encapsul8_mapping_alias_single_quote 'Q'
+    set-option global encapsul8_mapping_alias_double_quote 'q'
+    set-option global encapsul8_mapping_alias_grave 'g'
 
     set-option global encapsul8_show_key_tips true
 }
