@@ -30,11 +30,11 @@ provide-module encapsul8-load-defaults-local %{
     set-option global encapsul8_mapping_action_select_inner 'i'
     set-option global encapsul8_mapping_action_select_outer 'a'
     set-option global encapsul8_mapping_action_delete 'd'
-    set-option global encapsul8_mapping_action_replace 'r'
     set-option global encapsul8_mapping_action_wrap_within_shortcut 'x'
     set-option global encapsul8_mapping_action_wrap_around_shortcut 's'
     set-option global encapsul8_mapping_wrap_shortcut 's'
     set-option global encapsul8_mapping_cancel '<esc>'
+    # set-option global encapsul8_mapping_action_replace 'r'
 
     set-option global encapsul8_mapping_match_parentheses 'p'
     set-option global encapsul8_mapping_match_square_brackets 'b'
