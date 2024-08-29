@@ -68,12 +68,12 @@ define-command encapsul8-iterate -hidden %{
 #####################
 define-command encapsul8-surround-around-action-shortcut -hidden %{
     encapsul8-action-select-outer
-    encapsul8-surround-exec
+    encapsul8-surround-exec-with-restore
 }
 
 define-command encapsul8-surround-within-action-shortcut -hidden %{
     encapsul8-action-select-inner
-    encapsul8-surround-exec
+    encapsul8-surround-exec-with-restore
 }
 
 #####################
@@ -118,7 +118,7 @@ define-command encapsul8-action -docstring 'Search for a pair and perform an act
             evaluate-commands %sh{
                 [[ $kak_key == $kak_opt_encapsul8_mapping_surround_shortcut ]] && echo nop || echo fail
             }
-            encapsul8-surround-exec # async
+            encapsul8-surround-exec-without-restore # async
         } catch %{
             set-option window encapsul8_iterate_current_search "%val{key}"
             encapsul8-action-select

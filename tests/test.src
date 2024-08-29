@@ -1192,7 +1192,9 @@ define-command test-117 -override %{
     find-test "117"
     execute-keys 'tel'
     execute-keys -with-hooks -with-maps 'mpxb'
-    check-selection-with '[test]'
+    check-selection-with 'e'
+    execute-keys 'xH'
+    check-selection-with '"([test])"'
     execute-keys 'u'
 }
 
@@ -1200,7 +1202,9 @@ define-command test-118 -override %{
     find-test "118"
     execute-keys 'tel'
     execute-keys -with-hooks -with-maps 'mpsb'
-    check-selection-with '[(test)]'
+    check-selection-with 'e'
+    execute-keys 'xH'
+    check-selection-with '"[(test)]"'
     execute-keys 'u'
 }
 

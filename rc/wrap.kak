@@ -23,17 +23,26 @@ define-command encapsul8-surround-add-pair-based-on -hidden -params 1 %{
 }
 
 declare-option -hidden str encapsul8_opt_surround_resolve_char_hotkey
-define-command encapsul8-surround-exec -hidden %{
+define-command encapsul8-surround-exec -hidden -params 1 %{
     encapsul8-info action_surround
     on-key %{
         encapsul8-check-cancel-with-user-position-restore %val{key}
         encapsul8-resolve-char-alias %val{key} encapsul8_opt_surround_resolve_char_hotkey
         encapsul8-surround-add-pair-based-on %opt{encapsul8_opt_surround_resolve_char_hotkey}
         encapsul8-undo-save
+        %arg{1}
     }
+}
+
+define-command encapsul8-surround-exec-with-restore -hidden %{
+    encapsul8-surround-exec encapsul8-position-restore-user
+}
+
+define-command encapsul8-surround-exec-without-restore -hidden %{
+    encapsul8-surround-exec nop
 }
 
 define-command encapsul8-surround -docstring 'Wrap the current selection with a chosen character' %{
     encapsul8-position-save-user
-    encapsul8-surround-exec
+    encapsul8-surround-exec-without-restore
 }
