@@ -417,3 +417,15 @@ function main <
 # Test quick replace for *
 ### TEST_119 ###
 "*test*"
+
+
+# Test multicursor
+### TEST_120 ###
+({test})
+([test])
+(<test>)
+
+### TEST_121 ###
+  {(testtest)}
+     [(testtest)]
+<(testtest)>

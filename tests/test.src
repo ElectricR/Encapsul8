@@ -140,6 +140,8 @@ define-command run-tests -override %{
     test-117
     test-118
     test-119
+    test-120
+    test-121
     test-no-pending-changes
     echo 'Success!'
 }
@@ -1214,5 +1216,45 @@ define-command test-119 -override %{
     execute-keys -with-hooks -with-maps 'm*)'
     execute-keys 'xH'
     check-selection-with '"(test)"'
+    execute-keys 'u'
+}
+
+define-command test-120 -override %{
+    find-test "120"
+    execute-keys 'CC'
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm)"'
+    execute-keys ','
+    check-selection-with 'e'
+    execute-keys 'k'
+    check-selection-with 'e'
+    execute-keys 'k'
+    check-selection-with 'e'
+    execute-keys 'xH'
+    check-selection-with '"{test}"'
+    execute-keys 'jxH'
+    check-selection-with '"[test]"'
+    execute-keys 'jxH'
+    check-selection-with '"<test>"'
+    execute-keys 'u'
+}
+
+define-command test-121 -override %{
+    find-test "121"
+    execute-keys 'CC'
+    execute-keys 'llllllll'
+    execute-keys -with-hooks -with-maps 'm)"'
+    execute-keys ','
+    check-selection-with 's'
+    execute-keys 'k'
+    check-selection-with 'e'
+    execute-keys 'k'
+    check-selection-with 't'
+    execute-keys 'xH'
+    check-selection-with '  {"testtest"}'
+    execute-keys 'jxH'
+    check-selection-with '     ["testtest"]'
+    execute-keys 'jxH'
+    check-selection-with '<"testtest">'
     execute-keys 'u'
 }
