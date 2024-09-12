@@ -9,7 +9,7 @@ provide-module encapsul8-undo-simple %{
 
     define-command encapsul8-undo -override -docstring 'Try to undo the last change, if it was made by Encapsul8 (simple version)' %{
         evaluate-commands %sh{
-            ( [[ $kak_opt_encapsul8_undo_history_id == $kak_history_id ]] && echo nop ) || echo fail
+            ( [ $kak_opt_encapsul8_undo_history_id = $kak_history_id ] && echo nop ) || echo fail
         }
         execute-keys "u"
         encapsul8-position-restore "%opt{encapsul8_undo_saved_selections}"
@@ -19,7 +19,7 @@ provide-module encapsul8-undo-simple %{
         execute-keys "U"
         try %{
             evaluate-commands %sh{
-                ( [[ $kak_opt_encapsul8_undo_history_id == $kak_history_id ]] && echo nop ) || echo fail
+                ( [ $kak_opt_encapsul8_undo_history_id = $kak_history_id ] && echo nop ) || echo fail
             }
             encapsul8-position-restore "%opt{encapsul8_undo_saved_selections}"
         } catch %{

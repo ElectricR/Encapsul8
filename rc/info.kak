@@ -7,42 +7,46 @@ define-command encapsul8-info -hidden -params 1 %{
         info %sh{
             left_column_max_len=0
 
-            function ack_left {
-                [[ ${#1} -gt $left_column_max_len ]] && left_column_max_len=${#1}
+            ack_left() {
+                [ ${#1} -gt $left_column_max_len ] && left_column_max_len=${#1}
             }
 
-            function form_left {
+            form_left() {
                 res=""
                 for str in "$1" "$2" "$3"; do
                     if [ -n "$str" ]; then
                         if [ -n "$res" ]; then
-                            res+=","
+                            res="${res},"
                         fi
-                        res+="$str"
+                        res="${res}${str}"
                     fi
                 done
                 echo "${res}:"
             }
 
-            function declare_lefts {
+            declare_lefts() {
                 for opt in $@; do
-                    if [[ -n ${!opt} ]]; then
-                        export left_${opt}=`form_left "${!opt}"`
+                    eval "opt_exp=\$$opt"
+                    if [ -n ${opt_exp} ]; then
+                        export left_${opt}=`form_left "${opt_exp}"`
                     fi
                 done
             }
 
-            function print_all {
+            print_all() {
                 for opt in $@; do
                     acc_l=`printf "left_%s" ${opt}`
                     acc_r=`printf "right_%s" ${opt}`
-                    if [[ -n ${!acc_l} ]]; then
-                        printf '%-*s %s\n' $left_column_max_len ${!acc_l} "${!acc_r}"
+                    eval "acc_exp_r=\$$acc_r"
+                    eval "acc_exp_l=\$$acc_l"
+
+                    if [ -n "${acc_exp_r}" ]; then
+                        printf '%-*s %s\n' $left_column_max_len ${acc_exp_l} "${acc_exp_r}"
                     fi
                 done
             }
 
-            function translate_a_bit {
+            translate_a_bit() {
                 case $1 in
                     '<lt>') echo '<' ;;
                     '<gt>') echo '>' ;;
@@ -51,8 +55,8 @@ define-command encapsul8-info -hidden -params 1 %{
             }
             kak_opt_encapsul8_iterate_current_search=`translate_a_bit "$kak_opt_encapsul8_iterate_current_search"`
 
-            function filter_current_search {
-                [[ $kak_opt_encapsul8_iterate_current_search != $1 ]] && echo $1
+            filter_current_search() {
+                [ $kak_opt_encapsul8_iterate_current_search != $1 ] && echo $1
             }
 
             right_kak_opt_encapsul8_mapping_surround_shortcut="create surrounding"
@@ -65,7 +69,7 @@ define-command encapsul8-info -hidden -params 1 %{
             right_kak_opt_encapsul8_mapping_action_surround_within_shortcut="surround the contents"
             right_kak_opt_encapsul8_iterate_current_search="search again"
 
-            function action {
+            action() {
                 left_1=`form_left "$kak_opt_encapsul8_mapping_alias_parentheses"     '(' ')'`; right_1="find paretheses"; ack_left $left_1
                 left_2=`form_left "$kak_opt_encapsul8_mapping_alias_braces"          '{' '}'`; right_2="find curly braces"; ack_left $left_2
                 left_3=`form_left "$kak_opt_encapsul8_mapping_alias_square_brackets" '[' ']'`; right_3="find square brackets"; ack_left $left_3
@@ -93,7 +97,7 @@ define-command encapsul8-info -hidden -params 1 %{
             }
 
 
-            function action_switch {
+            action_switch() {
                 left_1=`form_left "$(filter_current_search $kak_opt_encapsul8_mapping_alias_parentheses)" "$(filter_current_search '(')" "$(filter_current_search ')')"`; right_1="replace with paretheses"; ack_left $left_1
                 left_2=`form_left "$(filter_current_search $kak_opt_encapsul8_mapping_alias_braces)" "$(filter_current_search '{')" "$(filter_current_search '}')"`; right_2="replace with curly braces"; ack_left $left_2
                 left_3=`form_left "$(filter_current_search $kak_opt_encapsul8_mapping_alias_square_brackets)" "$(filter_current_search '[')" "$(filter_current_search ']')"`; right_3="replace with square brackets"; ack_left $left_3
@@ -138,7 +142,7 @@ define-command encapsul8-info -hidden -params 1 %{
                     "kak_opt_encapsul8_mapping_cancel"
             }
 
-            function action_replace {
+            action_replace() {
                 left_1=`form_left '(' ')'`; right_1="replace with paretheses"; ack_left $left_1
                 left_2=`form_left '{' '}'`; right_2="replace with curly braces"; ack_left $left_2
                 left_3=`form_left '[' ']'`; right_3="replace with square brackets"; ack_left $left_3
@@ -156,7 +160,7 @@ define-command encapsul8-info -hidden -params 1 %{
                     "kak_opt_encapsul8_mapping_cancel"
             }
 
-            function action_surround {
+            action_surround() {
                 left_1=`form_left "$kak_opt_encapsul8_mapping_alias_parentheses"     '(' ')'`; right_1="surround with paretheses"; ack_left $left_1
                 left_2=`form_left "$kak_opt_encapsul8_mapping_alias_braces"          '{' '}'`; right_2="surround with curly braces"; ack_left $left_2
                 left_3=`form_left "$kak_opt_encapsul8_mapping_alias_square_brackets" '[' ']'`; right_3="surround with square brackets"; ack_left $left_3

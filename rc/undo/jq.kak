@@ -27,7 +27,7 @@ provide-module encapsul8-undo-jq %{
             cat $kak_opt_encapsul8_undo_jq_file | jq -r .'"'$kak_buffile'"'.'"'$kak_history_id'"'
         }
         evaluate-commands %sh{
-            [[ $kak_opt_encapsul8_undo_jq_selections != null ]] && echo nop || echo fail null selections
+            [ $kak_opt_encapsul8_undo_jq_selections != null ] && echo nop || echo fail null selections
         }
         execute-keys "u"
         encapsul8-position-restore "%opt{encapsul8_undo_jq_selections}"
@@ -40,7 +40,7 @@ provide-module encapsul8-undo-jq %{
                 cat $kak_opt_encapsul8_undo_jq_file | jq -r .'"'$kak_buffile'"'.'"'$kak_history_id'"'
             }
             evaluate-commands %sh{
-                [[ $kak_opt_encapsul8_undo_jq_selections != null ]] && echo nop || echo fail
+                [ $kak_opt_encapsul8_undo_jq_selections != null ] && echo nop || echo fail
             }
             encapsul8-position-restore "%opt{encapsul8_undo_jq_selections}"
         } catch %{

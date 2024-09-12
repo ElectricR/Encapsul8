@@ -16,6 +16,7 @@ define-command encapsul8-surround-add-pair-based-on -hidden -params 1 %{
             '['|']')       echo encapsul8-surround-add-pair '[' ']' ;;
             '"')           echo encapsul8-surround-add-pair '\"' '\"' ;;
             "'")           echo encapsul8-surround-add-pair "\'" "\'" ;;
+            '\')           echo encapsul8-surround-add-pair '"\"' '"\"' ;;
             *)             echo encapsul8-surround-add-pair "$1" "$1" ;;
 
         esac

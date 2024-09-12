@@ -116,7 +116,7 @@ define-command encapsul8-action -docstring 'Search for a pair and perform an act
         encapsul8-position-save-user
         try %{
             evaluate-commands %sh{
-                [[ $kak_key == $kak_opt_encapsul8_mapping_surround_shortcut ]] && echo nop || echo fail
+                [ $kak_key = $kak_opt_encapsul8_mapping_surround_shortcut ] && echo nop || echo fail
             }
             encapsul8-surround-exec-without-restore # async
         } catch %{

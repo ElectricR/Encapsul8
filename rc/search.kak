@@ -19,18 +19,18 @@ declare-option -hidden str encapsul8_opt_search_resolve_char_hotkey
 define-command encapsul8-search-pair -hidden -params 1 %{
     encapsul8-resolve-char-alias %arg{1} encapsul8_opt_search_resolve_char_hotkey
     try %sh{
-        case $kak_opt_encapsul8_opt_search_resolve_char_hotkey in
+        case "$kak_opt_encapsul8_opt_search_resolve_char_hotkey" in
             '('|')'|"{"|"}"|'<lt>'|'<gt>'|'['|']'|'`') echo encapsul8-search-with-kakoune "$kak_opt_encapsul8_opt_search_resolve_char_hotkey" ;;
             '"') echo encapsul8-search-with-kakoune '\"' ;;
             "'") echo encapsul8-search-with-kakoune "\'" ;;
             '.'|'*'|','|'?'|'^'|'|'|"<plus>"|'$') echo encapsul8-search-with-kakoune "c\\$1,\\$1<ret>" ;;
-            '\') echo encapsul8-search-with-kakoune 'c\\\\,\\\\<ret>' ;;
+            '\') printf '%s %s' encapsul8-search-with-kakoune 'c\\\\,\\\\<ret>' ;; # shenanigans for different shells
             *) echo encapsul8-search-with-kakoune "c$1,$1<ret>" ;;
         esac
     } catch %{
         try %{
             evaluate-commands %sh{
-                [[ "$1" == ')' ]] || [[ "$1" == "$kak_opt_encapsul8_opt_brace" ]] || [[ "$1" == ']' ]] || [[ "$1" == '<gt>' ]] || echo fail
+                [ "$1" = ')' ] || [ "$1" = "$kak_opt_encapsul8_opt_brace" ] || [ "$1" = ']' ] || [ "$1" = '<gt>' ] || echo fail
             }
             set-option window encapsul8_opt_direction '<a-f>'
         } catch %{

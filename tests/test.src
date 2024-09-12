@@ -16,7 +16,7 @@ try %{ declare-option str history_id_start }
 
 define-command check-selection-with -params 1 -override %{
     evaluate-commands %sh{
-        [[ "$kak_selection" == "$1" ]] && echo nop || echo fail Test $kak_opt_current_test failed on comparing "$kak_selection" to "$1"
+        [ "$kak_selection" = "$1" ] && echo nop || echo fail Test $kak_opt_current_test failed on comparing "$kak_selection" to "$1"
     }
 }
 
@@ -142,13 +142,14 @@ define-command run-tests -override %{
     test-119
     test-120
     test-121
+    test-122
     test-no-pending-changes
     echo 'Success!'
 }
 
 define-command test-no-pending-changes -override %{
     evaluate-commands %sh{
-        [[ "$kak_opt_history_id_start" == "$kak_history_id" ]] && echo nop || echo fail "History id is not $kak_opt_history_id_start!"
+        [ "$kak_opt_history_id_start" = "$kak_history_id" ] && echo nop || echo fail "History id is not $kak_opt_history_id_start!"
     }
 }
 
@@ -1256,5 +1257,14 @@ define-command test-121 -override %{
     check-selection-with '     ["testtest"]'
     execute-keys 'jxH'
     check-selection-with '<"testtest">'
+    execute-keys 'u'
+}
+
+define-command test-122 -override %{
+    find-test "122"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'm)\'
+    execute-keys 'xH'
+    check-selection-with '"\test\"'
     execute-keys 'u'
 }
