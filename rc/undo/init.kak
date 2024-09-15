@@ -1,5 +1,5 @@
 declare-option -hidden bool encapsul8_undo_jq_detected %sh{
-    ( [ -n $(jq -h | tr -d '\n') ] && echo true ) || echo false
+    ( [ -n "$(jq -h | tr -d '\n')" ] && echo true ) || echo false
 }
 
 declare-option -hidden str encapsul8_undo_provider %sh{

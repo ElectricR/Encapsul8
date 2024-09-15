@@ -22,6 +22,7 @@ define-command check-selection-with -params 1 -override %{
 
 define-command run-tests -override %{
     set-option global history_id_start "%val{history_id}"
+    test-undo-jq-default
     test-1
     test-2
     test-3
@@ -150,6 +151,12 @@ define-command run-tests -override %{
 define-command test-no-pending-changes -override %{
     evaluate-commands %sh{
         [ "$kak_opt_history_id_start" = "$kak_history_id" ] && echo nop || echo fail "History id is not $kak_opt_history_id_start!"
+    }
+}
+
+define-command test-undo-jq-default -override %{
+    evaluate-commands %sh{
+        [ "$kak_opt_encapsul8_undo_provider" = "jq" ] && echo nop || echo fail "The selected undo provider is expected to be jq"
     }
 }
 
