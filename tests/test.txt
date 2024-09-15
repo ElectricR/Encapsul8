@@ -434,3 +434,8 @@ function main <
 # Replace with \
 ### TEST_122 ###
 "(test)"
+
+
+# Test jq multiple undo
+### TEST_123 ###
+"(((test)))"

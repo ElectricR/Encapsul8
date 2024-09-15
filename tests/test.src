@@ -144,6 +144,7 @@ define-command run-tests -override %{
     test-120
     test-121
     test-122
+    test-123
     test-no-pending-changes
     echo 'Success!'
 }
@@ -1274,4 +1275,34 @@ define-command test-122 -override %{
     execute-keys 'xH'
     check-selection-with '"\test\"'
     execute-keys 'u'
+}
+
+define-command test-123 -override %{
+    find-test "123"
+    execute-keys 'tel'
+    execute-keys -with-hooks -with-maps 'mpd'
+    encapsul8-undo-save # explicit call, known issue
+    execute-keys -with-hooks -with-maps 'mpd'
+    encapsul8-undo-save # explicit call, known issue
+    execute-keys -with-hooks -with-maps 'mpd'
+    encapsul8-undo-save # explicit call, known issue
+    execute-keys 'xH'
+    check-selection-with '"test"'
+    execute-keys -with-hooks -with-maps 'u'
+    check-selection-with 'e'
+    execute-keys -with-hooks -with-maps 'u'
+    check-selection-with 'e'
+    execute-keys -with-hooks -with-maps 'u'
+    check-selection-with 'e'
+    execute-keys 'xH'
+    check-selection-with '"(((test)))"'
+    execute-keys -with-hooks -with-maps 'U'
+    check-selection-with 'e'
+    execute-keys -with-hooks -with-maps 'U'
+    check-selection-with 'e'
+    execute-keys -with-hooks -with-maps 'U'
+    check-selection-with 'e'
+    execute-keys 'xH'
+    check-selection-with '"test"'
+    execute-keys 'uuu'
 }
