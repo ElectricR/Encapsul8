@@ -11,16 +11,16 @@ declare-option -hidden str encapsul8_undo_provider %sh{
 }
 
 define-command encapsul8-undo-save -hidden -override %{
-    require-module "encapsul8-undo-%opt{encapsul8_undo_provider}"
+    evaluate-commands %{ "encapsul8-undo-init-%opt{encapsul8_undo_provider}" }
     encapsul8-undo-save
 }
 
 define-command encapsul8-undo -docstring 'Try to undo the last change, if it was made by Encapsul8' %{
-    require-module "encapsul8-undo-%opt{encapsul8_undo_provider}"
+    evaluate-commands %{ "encapsul8-undo-init-%opt{encapsul8_undo_provider}" }
     encapsul8-undo
 }
 
 define-command encapsul8-redo -docstring 'Try to redo the last change, if it was made by Encapsul8' %{
-    require-module "encapsul8-undo-%opt{encapsul8_undo_provider}"
+    evaluate-commands %{ "encapsul8-undo-init-%opt{encapsul8_undo_provider}" }
     encapsul8-redo
 }

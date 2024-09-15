@@ -145,6 +145,7 @@ define-command run-tests -override %{
     test-121
     test-122
     test-123
+    test-124
     test-no-pending-changes
     echo 'Success!'
 }
@@ -1305,4 +1306,27 @@ define-command test-123 -override %{
     execute-keys 'xH'
     check-selection-with '"test"'
     execute-keys 'uuu'
+}
+
+
+# Test for simple undo should be last
+define-command test-124 -override %{
+    encapsul8-undo-init-simple
+    find-test "124"
+    execute-keys 'tel'
+    execute-keys -with-maps -with-hooks "mpd"
+    encapsul8-undo-save # explicit call, known issue
+    execute-keys -with-maps -with-hooks "mpd"
+    encapsul8-undo-save # explicit call, known issue
+    execute-keys 'xH'
+    check-selection-with '"test"'
+    execute-keys -with-maps -with-hooks 'u'
+    check-selection-with 'e'
+    execute-keys 'xH'
+    check-selection-with '"(test)"'
+    execute-keys -with-maps -with-hooks 'u'
+    check-selection-with ')' # Should not restore position
+    execute-keys 'xH'
+    check-selection-with '"((test))"'
+    encapsul8-undo-init-jq
 }

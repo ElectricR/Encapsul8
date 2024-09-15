@@ -1,4 +1,4 @@
-provide-module encapsul8-undo-simple %{
+define-command encapsul8-undo-init-simple %{
     declare-option -hidden int encapsul8_undo_history_id
     declare-option -hidden str encapsul8_undo_saved_selections
 

@@ -1,4 +1,4 @@
-provide-module encapsul8-undo-jq %{
+define-command encapsul8-undo-init-jq %{
     declare-option -hidden str encapsul8_undo_jq_file %sh{
         mktemp -t "kak-encapsul8.$kak_session.XXXXXXXX" --tmpdir=$XDG_RUNTIME_DIR
     }

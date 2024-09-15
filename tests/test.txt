@@ -439,3 +439,8 @@ function main <
 # Test jq multiple undo
 ### TEST_123 ###
 "(((test)))"
+
+
+# Test simple undo
+### TEST_124 ###
+"((test))"
