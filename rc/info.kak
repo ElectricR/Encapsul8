@@ -40,7 +40,7 @@ define-command encapsul8-info -hidden -params 1 %{
                     eval "acc_exp_r=\$$acc_r"
                     eval "acc_exp_l=\$$acc_l"
 
-                    if [ -n "${acc_exp_r}" ]; then
+                    if [ "${acc_exp_l}" != ":" ] && [ -n "${acc_exp_r}" ]; then
                         printf '%-*s %s\n' $left_column_max_len ${acc_exp_l} "${acc_exp_r}"
                     fi
                 done
