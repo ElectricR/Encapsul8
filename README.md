@@ -1,4 +1,5 @@
-## Table of contents
+<details>
+<summary><h3>Table of contents</h3></summary>
 
 1. [TLDR](#tldr)
 2. [Features](#features)
@@ -13,6 +14,8 @@
 6. [Known issues](#known-issues)
 7. [See also](#see-also)
 8. [Final note](#final-note)
+
+</details>
 
 ## TLDR
 
