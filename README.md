@@ -19,9 +19,9 @@
 
 ## TLDR
 
-![](https://github.com/ElectricR/Encapsul8-assets/blob/master/assets/full.webp)
-
 Encapsul8 is a surround-like plugin for [Kakoune](https://github.com/mawww/kakoune) with select-then-update paradigm.
+
+![](https://github.com/ElectricR/Encapsul8-assets/blob/master/assets/full.webp)
 
 `ms(` - surround with parentheses. `m"i` - select the content of double quotes. `m({` - replace parentheses with curly braces. Clippy will tell you the rest.
 
