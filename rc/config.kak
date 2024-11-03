@@ -21,6 +21,8 @@ declare-option bool encapsul8_show_key_tips
 
 # Suggested defaults
 # Load them with `require-module encapsul8-load-defaults`
+#
+# Please ensure that `encapsul8-load-defaults-global` does not interfere with your existing setup
 provide-module encapsul8-load-defaults %{
     require-module encapsul8-load-defaults-local
     require-module encapsul8-load-defaults-global
