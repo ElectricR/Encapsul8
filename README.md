@@ -104,14 +104,14 @@ With the quick replace, after selecting a pair, any key that is not bound to an 
 
 ![](https://github.com/ElectricR/Encapsul8-assets/blob/master/assets/replace-quick.webp)
 
-The dedicated replace mode is similar to the quick one, except that it doesn't respect pair aliases and has no any additional actions except cancellation. This can be useful, if you want want to replace with some mapped character, e.g., `a`. This mode is disabled by default.
+The dedicated replace mode is similar to the quick one, except that it doesn't respect pair aliases and has no additional actions except cancellation. This can be useful, if you want to replace with some mapped character, e.g., `a`. This mode is disabled by default.
 
 ### Undo/redo
-Suppose, you want to add a pair of parentheses to the current word. You type something like `:exec bei(<esc>a)<esc>` to achieve that. Now you suddenly decide to undo this change. You type `u` and revert it, but now you have twice as many selections pointing only to the edges of your word.
+Suppose, you want to add a pair of parentheses to the current word. You type something like `:exec bei(<esc>a)<esc>` to achieve that. Now you suddenly decide to undo this change. You type `u` to revert it, but now you have twice as many selections pointing only to the edges of your word.
 
 ![](https://github.com/ElectricR/Encapsul8-assets/blob/master/assets/undo-1.webp)
 
-The undo/redo functionality is a current attempt to improve the UX in these cases. With it, Encapsul8 will try to restore selections to the place just before your modification.
+The undo/redo functionality is the current attempt to improve the UX in these cases. With it, Encapsul8 will try to restore selections to the place just before your modification.
 
 ![](https://github.com/ElectricR/Encapsul8-assets/blob/master/assets/undo-2.webp)
 
