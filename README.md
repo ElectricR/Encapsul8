@@ -122,7 +122,7 @@ Currently, there are two implementations for undo/redo - simple and jq:
 Encapsul8 provides four public functions to work with undo/redo:
 * `encapsul8-undo` performs an undo if the current `history_id` is the result of an Encapsul8 operation. Fails otherwise.
 * `encapsul8-redo` performs a redo if the next `history_id` is the result of an Encapsul8 operation. Fails otherwise.
-* Two wrappers that perform undo/redo and restore selections when possible. These are mapped automatically if you load the default configuration.
+* Two wrappers that combine conventional undo/redo with `encapsul8-undo`/`encapsul8-redo`. These are mapped automatically if you load the default configuration.
 
 ## Configuration
 
