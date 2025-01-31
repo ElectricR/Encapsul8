@@ -27,7 +27,7 @@ define-command encapsul8-info -hidden -params 1 %{
             declare_lefts() {
                 for opt in $@; do
                     eval "opt_exp=\$$opt"
-                    if [ -n ${opt_exp} ]; then
+                    if [ -n "${opt_exp}" ]; then
                         export left_${opt}=`form_left "${opt_exp}"`
                     fi
                 done
@@ -40,8 +40,8 @@ define-command encapsul8-info -hidden -params 1 %{
                     eval "acc_exp_r=\$$acc_r"
                     eval "acc_exp_l=\$$acc_l"
 
-                    if [ "${acc_exp_l}" != ":" ] && [ -n "${acc_exp_r}" ]; then
-                        printf '%-*s %s\n' $left_column_max_len ${acc_exp_l} "${acc_exp_r}"
+                    if [ "${#acc_exp_l}" -gt 1 ] && [ -n "${acc_exp_r}" ]; then
+                        printf '%-*s %s\n' $left_column_max_len "${acc_exp_l}" "${acc_exp_r}"
                     fi
                 done
             }
